@@ -1,4 +1,5 @@
 import exp from "constants";
+import "./Footer.css";
 
 const Footer = () => {
     return (
