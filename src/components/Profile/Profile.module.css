@@ -6,5 +6,8 @@
 
 .content .content_img img  {
     width: 100%;
+}
 
+.item {
+    color: red;
 }
