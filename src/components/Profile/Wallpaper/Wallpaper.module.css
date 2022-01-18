@@ -1,0 +1,8 @@
+.wallpaper_img {
+    grid-area: wallpaper;
+}
+
+
+.wallpaper_img img  {
+    width: 100%;
+}

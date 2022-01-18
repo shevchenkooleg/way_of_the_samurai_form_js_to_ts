@@ -1,0 +1,10 @@
+.avatar {
+    grid-area: avatar;
+    /*align-self: center;*/
+    /*justify-self: center;*/
+}
+
+.avatar img {
+    height: 200px;
+
+}

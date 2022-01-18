@@ -1,13 +1,16 @@
 .content {
     grid-area: c;
     background-color: darksalmon;
-    min-height: 500px;
-}
+    display: grid;
 
-.content .content_img img  {
-    width: 100%;
-}
+    grid-template-areas:
+    'wallpaper wallpaper'
+    'avatar description'
+    'newPosts newPosts'
+    'posts posts';
 
-.item {
-    color: red;
+    grid-template-columns: 2fr 10fr;
+    /*grid-template-rows: 200px 300px 300px auto;*/
+    /*grid-gap: 20px;*/
+
 }
