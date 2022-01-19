@@ -6,11 +6,11 @@
     grid-template-areas:
     'wallpaper wallpaper'
     'avatar description'
-    'newPosts newPosts'
+    /*'newPosts newPosts'*/
     'posts posts';
 
     grid-template-columns: 2fr 10fr;
     /*grid-template-rows: 200px 300px 300px auto;*/
-    /*grid-gap: 20px;*/
+    grid-gap: 10px;
 
 }

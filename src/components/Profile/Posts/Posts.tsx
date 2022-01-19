@@ -7,8 +7,8 @@ const Posts = () => {
     return (
         <div className={style.posts}>
             <NewPosts />
-            <Post />
-            <Post />
+            <Post message={'Hi, how are you doing?'} likeCount={15}/>
+            <Post message={'This is my first post'} likeCount={20}/>
         </div>
     )
 }

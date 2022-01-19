@@ -1,10 +1,11 @@
 .avatar {
     grid-area: avatar;
-    /*align-self: center;*/
-    /*justify-self: center;*/
+    align-self: center;
+    justify-self: center;
 }
 
 .avatar img {
     height: 200px;
+    border-radius: 15px;
 
 }
