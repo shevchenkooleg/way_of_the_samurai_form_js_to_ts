@@ -1,6 +1,4 @@
 .content {
-    grid-area: c;
-    background-color: darksalmon;
     display: grid;
 
     grid-template-areas:
