@@ -11,9 +11,6 @@ let posts = [
 let postsElements = posts.map( el => <Post message={el.post} likeCount={el.likeCount}/> )
 
 const Posts = () => {
-
-
-
     return (
         <div className={style.posts}>
             <NewPosts />

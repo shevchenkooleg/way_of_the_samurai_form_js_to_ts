@@ -5,10 +5,10 @@ type MessagePropsType = {
     message: string
 }
 
-const Message = (props: MessagePropsType) => {
+const MessageItem = (props: MessagePropsType) => {
     return (
         <div className={style.message}>{props.message}</div>
     )
 }
 
-export default Message;
+export default MessageItem;

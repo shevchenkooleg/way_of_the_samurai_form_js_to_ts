@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Dialogs.module.css'
-import Dialog from './Dialog/Dialog';
-import Message from "./Message/Message";
+import DialogItem from './Dialog/DialogItem';
+import MessageItem from "./Message/MessageItem";
 
 
 let messages = [
@@ -22,8 +22,8 @@ let dialogs = [
     {id: 6, name: 'Alexandr'}
 ]
 
-let messagesElements = messages.map( m => <Message message={m.message}/> )
-let dialogsElements= dialogs.map( d => <Dialog name={d.name} id={d.id} /> )
+let messagesElements = messages.map( m => <MessageItem message={m.message}/> )
+let dialogsElements= dialogs.map( d => <DialogItem name={d.name} id={d.id} /> )
 
 
 const Dialogs = () => {
