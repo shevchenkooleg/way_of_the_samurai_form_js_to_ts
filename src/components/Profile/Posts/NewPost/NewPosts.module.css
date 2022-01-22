@@ -1,10 +1,13 @@
 .newPosts {
     grid-area: newPosts;
+    font-size: 24px;
+    font-family: sans-serif;
+    margin: 0;
 }
 
 .textArea {
     width:960px;
-    height:150px;
+    height:140px;
     border-radius: 10px;
     border-color: white;
     margin-top: 5px;

@@ -12,7 +12,6 @@ const Profile = () => {
             <Avatar />
             <Description />
             <Posts />
-
         </div>
     )
 }

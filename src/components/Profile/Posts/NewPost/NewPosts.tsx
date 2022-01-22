@@ -4,9 +4,9 @@ import style from "./NewPosts.module.css";
 const NewPosts = () => {
     return (
         <div className={style.newPosts}>
-            <div>New post</div>
+            <div>Add new post</div>
             <textarea className={style.textArea}>what's news...</textarea>
-            <button className={style.button}>Send</button>
+            <button className={style.button}>Add</button>
         </div>
     )
 }
