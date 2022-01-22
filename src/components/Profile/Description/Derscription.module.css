@@ -1,4 +1,6 @@
 .description {
     grid-area: description;
-    background-color: darksalmon;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
 }

@@ -1,4 +1,5 @@
 .footer {
     grid-area: f;
-    background-color: deepskyblue;
+    background-color: #363c42;
+    color: white;
 }

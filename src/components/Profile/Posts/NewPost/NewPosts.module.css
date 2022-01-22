@@ -1,3 +1,28 @@
 .newPosts {
     grid-area: newPosts;
 }
+
+.textArea {
+    width:960px;
+    height:150px;
+    border-radius: 10px;
+    border-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button {
+    background-color: #f75411;
+    width: 110px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid #f75411;
+    color: white;
+}
+
+.button:hover {
+    background-color: #363c42;
+    transition: 0.5s;
+    border-color: #363c42;
+
+}

@@ -19,3 +19,5 @@ const Post = (props: PostPropsType) => {
 }
 
 export default Post;
+
+
