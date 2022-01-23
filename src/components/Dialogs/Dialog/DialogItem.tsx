@@ -1,4 +1,4 @@
-import style from "./Dialog.module.css";
+import style from "./DialogItem.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
 
@@ -6,6 +6,7 @@ import React from "react";
 type DialogPropsType = {
     name: string
     id: number
+    avaLink: string
 }
 
 const DialogItem = (props: DialogPropsType) => {
@@ -13,8 +14,15 @@ const DialogItem = (props: DialogPropsType) => {
 
     return (
         <div className={style.dialog}>
-            <NavLink to={path}
-                     className={dialogData => dialogData.isActive ? style.active : style.item}>{props.name}</NavLink>
+            <div className={style.avatar}>
+                <img src={props.avaLink} alt="avatar"/>
+            </div>
+            <div className={style.link}>
+                <NavLink to={path}
+                         className={dialogData => dialogData.isActive ? style.active : style.item}>{props.name}</NavLink>
+            </div>
+
+
         </div>
     )
 }

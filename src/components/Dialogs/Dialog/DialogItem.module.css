@@ -1,0 +1,35 @@
+.dialog {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas: 'ava name';
+    padding-bottom: 10px;
+
+}
+
+
+.item {
+    padding-left: 20px;
+    color: black;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.active{
+    padding-left: 20px;
+    /*color: #3784B8;*/
+    color: #f75411;
+    text-decoration: none;
+}
+
+.dialog img {
+    width: 50px;
+}
+
+.avatar {
+    grid-area: ava;
+}
+
+.link {
+    grid-area: name;
+    align-self: center;
+}

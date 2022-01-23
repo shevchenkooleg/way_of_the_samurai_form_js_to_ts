@@ -19,6 +19,7 @@ export type postsType = {
 export type dialogsType = {
     id: number
     name: string
+    avaLink: string
 }
 
 export type messagesType = {
