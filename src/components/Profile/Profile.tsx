@@ -4,10 +4,10 @@ import Posts from "./Posts/Posts";
 import Wallpaper from "./Wallpaper/Wallpaper";
 import Avatar from "./Avatar/Avatar";
 import Description from "./Description/Description";
-import Post from "./Posts/Post/Post";
+import {postsType} from "../../App";
 
 type ProfilePropsType = {
-    posts: object
+    posts: Array<postsType>
 }
 
 const Profile = (props: ProfilePropsType) => {

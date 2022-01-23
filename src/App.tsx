@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ElementType} from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -10,13 +10,30 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
+export type postsType = {
+    id: number
+    post: string
+    likeCount: number
+}
+
+export type dialogsType = {
+    id: number
+    name: string
+}
+
+export type messagesType = {
+    id: number
+    message: string
+}
+
 type AppPropsType = {
-    messages: object
-    dialogs: object
-    posts: object
+    messages: Array<messagesType>
+    dialogs: Array<dialogsType>
+    posts: Array<postsType>
 }
 
 function App(props: AppPropsType) {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>

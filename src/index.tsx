@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import MessageItem from "./components/Dialogs/Message/MessageItem";
-import DialogItem from "./components/Dialogs/Dialog/DialogItem";
-import Post from "./components/Profile/Posts/Post/Post";
 
 
-let messages = [
+export let messages = [
     {id: 1, message: 'Hi, hou are you doing?'},
     {id: 1, message: 'Whatsup dude! Where are you? Call me back later.'},
     {id: 1, message: 'Hi man! Let\'s go to the ocean tonight. Let me know about that.'},
@@ -17,7 +14,7 @@ let messages = [
     {id: 1, message: 'Yo!!!'}
 ]
 
-let dialogs = [
+export let dialogs = [
     {id: 1, name: 'Valentina'},
     {id: 2, name: 'Ilya'},
     {id: 3, name: 'Elena'},
@@ -26,19 +23,14 @@ let dialogs = [
     {id: 6, name: 'Alexandr'}
 ]
 
-let posts = [
+export let posts = [
     {id: 1, post: 'Hi, how are you doing?', likeCount: 15},
     {id: 1, post: 'This is my first post', likeCount: 20}
 ]
 
-export let messagesElements = messages.map( m => <MessageItem message={m.message}/> )
-export let dialogsElements= dialogs.map( d => <DialogItem name={d.name} id={d.id} /> )
-export let postsElements = posts.map( el => <Post message={el.post} likeCount={el.likeCount}/> )
-
-
 ReactDOM.render(
   <React.StrictMode>
-    <App messages={messagesElements} dialogs={dialogsElements} posts={postsElements}/>
+    <App messages={messages} dialogs={dialogs} posts={posts}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
