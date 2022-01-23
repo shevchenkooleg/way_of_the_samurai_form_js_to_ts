@@ -5,14 +5,16 @@ import DialogItem from "./Dialog/DialogItem";
 import {dialogsType, messagesType} from "../../App";
 
 type DialogsPropsType = {
-    messages: Array<messagesType>
-    dialogs: Array<dialogsType>
+    dialogsPage: {
+        messages: Array<messagesType>
+        dialogs: Array<dialogsType>
+    }
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogsElements= props.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> )
-    let messagesElements = props.messages.map( m => <MessageItem message={m.message}/> )
+    let dialogsElements= props.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} /> )
+    let messagesElements = props.dialogsPage.messages.map( m => <MessageItem message={m.message}/> )
 
     return (
         <div className={style.dialogs}>

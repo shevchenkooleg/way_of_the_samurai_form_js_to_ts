@@ -27,10 +27,14 @@ export type messagesType = {
 }
 
 type AppPropsType = {
-    appState: {
-        posts: Array<postsType>
-        dialogs: Array<dialogsType>
-        messages: Array<messagesType>
+    state: {
+        profilePage: {
+            posts: Array<postsType>
+        },
+        dialogsPage: {
+            dialogs: Array<dialogsType>
+            messages: Array<messagesType>
+        }
     }
 }
 
@@ -43,9 +47,8 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile posts={props.appState.posts}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs messages={props.appState.messages}
-                                                                   dialogs={props.appState.dialogs}/>}/>
+                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

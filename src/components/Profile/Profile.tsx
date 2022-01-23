@@ -7,7 +7,9 @@ import Description from "./Description/Description";
 import {postsType} from "../../App";
 
 type ProfilePropsType = {
-    posts: Array<postsType>
+    profilePage: {
+        posts: Array<postsType>
+    }
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -16,7 +18,7 @@ const Profile = (props: ProfilePropsType) => {
             <Wallpaper />
             <Avatar />
             <Description />
-            <Posts items={props.posts} />
+            <Posts items={props.profilePage.posts} />
         </div>
     )
 }
