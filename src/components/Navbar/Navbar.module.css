@@ -1,10 +1,21 @@
-.nav {
+.content {
     grid-area: n;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     margin-left: 20px;
 
+    display: grid;
+    grid-template-areas:
+    'nav'
+    'header'
+    'of';
+    grid-auto-rows: min-content;
+    grid-gap: 15px;
+}
+
+.nav {
+    grid-area: nav;
 }
 
 .item a {
@@ -16,3 +27,17 @@
     /*color: #3784B8;*/
     color: #f75411;
 }
+
+.header {
+    grid-area: header;
+}
+
+.onlineFriends {
+    grid-area: of;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-areas:
+    'header'
+    'element';
+}
+

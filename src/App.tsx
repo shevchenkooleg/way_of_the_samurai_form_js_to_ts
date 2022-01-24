@@ -28,6 +28,13 @@ export type messagesType = {
     avatarImage: string
 }
 
+export type onlineStatusType = {
+    id: number
+    name: string
+    avaLink: string
+    isOnline: boolean
+}
+
 type AppPropsType = {
     state: {
         profilePage: {
@@ -36,6 +43,9 @@ type AppPropsType = {
         dialogsPage: {
             dialogs: Array<dialogsType>
             messages: Array<messagesType>
+        },
+        sideBar: {
+            onlineStatus: Array<onlineStatusType>
         }
     }
 }
@@ -46,7 +56,7 @@ function App(props: AppPropsType) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar sideBar={props.state.sideBar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>}/>
