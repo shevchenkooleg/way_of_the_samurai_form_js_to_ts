@@ -25,6 +25,7 @@ export type dialogsType = {
 export type messagesType = {
     id: number
     message: string
+    avatarImage: string
 }
 
 type AppPropsType = {

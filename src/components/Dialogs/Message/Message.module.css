@@ -1,5 +1,27 @@
+
+
+.content {
+    text-align: right;
+    margin-right: 30px;
+    display: block;
+    padding-bottom: 5px;
+}
+
+
+.contentAlien {
+    display: block;
+    padding-bottom: 5px;
+}
+
+.content img {
+    width: 30px;
+}
+
+.contentAlien img {
+    width: 30px;
+}
+
 .message {
-    padding-left: 20px;
     color: black;
     padding-top: 5px;
 }
