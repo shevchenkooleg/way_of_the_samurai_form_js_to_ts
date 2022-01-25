@@ -13,7 +13,7 @@ type NavbarPropsType = {
 const Navbar = (props: NavbarPropsType) => {
 
     let onlineFriendsElement = props.sideBar.onlineStatus.map(s => s.isOnline ?
-        <OnlineFriend name={s.name} avaLink={s.avaLink} isOnline={s.isOnline}/> : null)
+        <OnlineFriend name={s.name} avaLink={s.avaLink} isOnline={s.isOnline} id={s.id}/> : null)
 
     return (
         <div className={style.content}>

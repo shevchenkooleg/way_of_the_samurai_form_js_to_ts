@@ -62,11 +62,11 @@ let state = {
     sideBar: {
         onlineStatus: [
             {id: 1, name: 'Valentina', avaLink: avaLinkArray[1], isOnline: true},
-            {id: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: false},
-            {id: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: false},
+            {id: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: true},
+            {id: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: true},
             {id: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
             {id: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: false},
-            {id: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: false}
+            {id: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: true}
         ]
     }
 }

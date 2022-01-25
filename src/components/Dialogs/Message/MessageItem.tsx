@@ -1,4 +1,4 @@
-import style from "./Message.module.css";
+import style from "./MessageItem.module.css";
 import React from "react";
 import {findAllByDisplayValue} from "@testing-library/react";
 
@@ -25,6 +25,7 @@ const MessageItem = (props: MessagePropsType) => {
                 <div className={style.contentImage}><img src={props.avatarImage} alt="avatar"/></div>
                 <div className={style.message}>{props.message}</div>
             </div>
+
         )
     }
 

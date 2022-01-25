@@ -1,17 +1,33 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    grid-template-areas:
+    'dialogs messages'
+    'dialogs textAreaContainer';
+
     padding-top: 15px;
     padding-left: 20px;
     padding-bottom: 15px;
 }
 
 .dialogsItems {
+    grid-area: dialogs;
     padding-bottom: 20px;
     border-right: 2px solid #363c42;
 }
 
 .messagesItems {
+    grid-area: messages;
     padding-left: 20px;
     padding-bottom: 10px;
 }
+
+.textAreaContainer {
+    grid-area: textAreaContainer;
+    margin-top: 15px;
+    margin-left: 30px;
+    padding-bottom: 15px;
+
+}
+
+

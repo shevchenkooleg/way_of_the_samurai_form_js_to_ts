@@ -1,0 +1,25 @@
+.textArea {
+    width:720px;
+    height:80px;
+    border-radius: 10px;
+    border-color: black;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #f75411;
+    width: 110px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid #f75411;
+    color: white;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: #363c42;
+    transition: 0.5s;
+    border-style: none;
+
+}

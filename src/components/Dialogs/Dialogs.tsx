@@ -3,6 +3,7 @@ import style from './Dialogs.module.css'
 import MessageItem from "./Message/MessageItem";
 import DialogItem from "./Dialog/DialogItem";
 import {dialogsType, messagesType} from "../../App";
+import TextAreaFrame from "./TextAreaFrame/TextAreaFrame";
 
 type DialogsPropsType = {
     dialogsPage: {
@@ -24,6 +25,9 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={style.messagesItems}>
                 { messagesElements }
+            </div>
+            <div className={style.textAreaContainer}>
+                <TextAreaFrame />
             </div>
         </div>
     )
