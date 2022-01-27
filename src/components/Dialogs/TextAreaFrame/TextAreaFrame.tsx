@@ -16,7 +16,7 @@ const TextAreaFrame = () => {
 
     return (
         <div className={style.content}>
-            <textarea className={style.textArea} ref={newMessage}></textarea>
+            <textarea className={style.textArea} ref={newMessage}/>
             <button className={style.btn} onClick={ addMessage }>Send</button>
         </div>
 
