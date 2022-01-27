@@ -1,4 +1,4 @@
-import React, {ElementType, MouseEventHandler} from 'react';
+import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -9,7 +9,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {addPost} from "./redux/state";
 
 export type postsType = {
     id: number
@@ -36,7 +35,7 @@ export type onlineStatusType = {
     isOnline: boolean
 }
 
-type AppPropsType = {
+export type AppPropsType = {
     state: {
         profilePage: {
             posts: Array<postsType>
@@ -48,7 +47,8 @@ type AppPropsType = {
         sideBar: {
             onlineStatus: Array<onlineStatusType>
         }
-    }
+    },
+    addPost: Function
 
 }
 
@@ -61,7 +61,7 @@ function App(props: AppPropsType) {
                 <Navbar sideBar={props.state.sideBar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>}/>
+                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
                         <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>

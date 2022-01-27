@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import style from "./Posts.module.css";
 import NewPosts from "./NewPost/NewPosts";
 import Post from "./Post/Post";
@@ -8,6 +8,7 @@ import {postsType} from "../../../App";
 
 type PostsPropsType = {
     items: Array<postsType>
+    addPost: Function
 }
 
 
@@ -18,7 +19,7 @@ const Posts = (props: PostsPropsType) => {
 
     return (
         <div className={style.posts}>
-            <NewPosts />
+            <NewPosts addPost={props.addPost}/>
             { postsElements }
         </div>
     )
