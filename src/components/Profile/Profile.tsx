@@ -9,17 +9,19 @@ import {postsType} from "../../App";
 type ProfilePropsType = {
     profilePage: {
         posts: Array<postsType>
+        newPostText: string
     },
-    addPost: Function
+    addPost: Function,
+    textAreaUpdate: Function
 }
 
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={style.content}>
-            <Wallpaper />
-            <Avatar />
-            <Description />
-            <Posts items={props.profilePage.posts} addPost={props.addPost}/>
+            <Wallpaper/>
+            <Avatar/>
+            <Description/>
+            <Posts profilePage={props.profilePage} addPost={props.addPost} textAreaUpdate={props.textAreaUpdate}/>
         </div>
     )
 }

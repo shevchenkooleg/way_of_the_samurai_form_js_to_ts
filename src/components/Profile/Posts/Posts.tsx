@@ -5,22 +5,25 @@ import Post from "./Post/Post";
 import {postsType} from "../../../App";
 
 
-
-type PostsPropsType = {
-    items: Array<postsType>
-    addPost: Function
+type ProfilePropsType = {
+    profilePage: {
+        posts: Array<postsType>
+        newPostText: string
+    },
+    addPost: Function,
+    textAreaUpdate: Function
 }
 
 
+const Posts = (props: ProfilePropsType) => {
 
-const Posts = (props: PostsPropsType) => {
-
-    let postsElements = props.items.map( el => <Post message={el.post} likeCount={el.likeCount}/> )
+    let postsElements = props.profilePage.posts.map(el => <Post message={el.post} likeCount={el.likeCount}/>)
 
     return (
         <div className={style.posts}>
-            <NewPosts addPost={props.addPost}/>
-            { postsElements }
+            <NewPosts addPost={props.addPost} textAreaUpdate={props.textAreaUpdate}
+                      newPostText={props.profilePage.newPostText}/>
+            {postsElements}
         </div>
     )
 }

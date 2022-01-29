@@ -9,6 +9,8 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import {rerenderEntireTree} from "./rerender";
+import state, {textAreaUpdate} from "./redux/state";
 
 export type postsType = {
     id: number
@@ -39,6 +41,7 @@ export type AppPropsType = {
     state: {
         profilePage: {
             posts: Array<postsType>
+            newPostText: string
         },
         dialogsPage: {
             dialogs: Array<dialogsType>
@@ -48,7 +51,8 @@ export type AppPropsType = {
             onlineStatus: Array<onlineStatusType>
         }
     },
-    addPost: Function
+    addPost: Function,
+    textAreaUpdate: Function
 
 }
 
@@ -61,7 +65,9 @@ function App(props: AppPropsType) {
                 <Navbar sideBar={props.state.sideBar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
+                        <Route path='/profile'
+                               element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}
+                                                 textAreaUpdate={props.textAreaUpdate}/>}/>
                         <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
