@@ -1,9 +1,38 @@
-// import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {addMessage, addPost, newMessageTextAreaUpdate, newPostTextAreaUpdate} from './redux/state'
-import { rerenderEntireTree } from './rerender';
+import './index.css'
+import state, {addMessage, addPost, newMessageTextAreaUpdate, newPostTextAreaUpdate, subscribe} from './redux/state'
+import ReactDOM from "react-dom";
+import React from "react";
+import App, {dialogsType, messagesType, onlineStatusType, postsType} from "./App";
 
-rerenderEntireTree(state, addPost,addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate);
+type rerenderEntireTreePropsType = {
+    profilePage: {
+        posts: Array<postsType>
+        newPostText: string
+    },
+    dialogsPage: {
+        dialogs: Array<dialogsType>
+        messages: Array<messagesType>
+        newMessageText: string
+    },
+    sideBar: {
+        onlineStatus: Array<onlineStatusType>
+    }
+}
+
+let rerenderEntireTree = (state: rerenderEntireTreePropsType) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App state={state} addPost={addPost} addMessage={addMessage} newPostTextAreaUpdate={newPostTextAreaUpdate}
+                 newMessageTextAreaUpdate={newMessageTextAreaUpdate}/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+
+rerenderEntireTree(state);
+
+subscribe(rerenderEntireTree)
 
 
 
