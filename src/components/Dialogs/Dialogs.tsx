@@ -14,20 +14,22 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} avaLink={d.avaLink}/> )
-    let messagesElements = props.dialogsPage.messages.map( m => <MessageItem message={m.message} id={m.id} avatarImage={m.avatarImage}/> )
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avaLink={d.avaLink}/>)
+    let messagesElements = props.dialogsPage.messages.map(m => <MessageItem message={m.message} id={m.id}
+                                                                            userId={m.userId}
+                                                                            avatarImage={m.avatarImage}/>)
 
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                { dialogsElements }
+                {dialogsElements}
 
             </div>
             <div className={style.messagesItems}>
-                { messagesElements }
+                {messagesElements}
             </div>
             <div className={style.textAreaContainer}>
-                <TextAreaFrame />
+                <TextAreaFrame/>
             </div>
         </div>
     )

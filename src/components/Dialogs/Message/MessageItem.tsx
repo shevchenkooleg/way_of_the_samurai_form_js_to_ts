@@ -5,11 +5,12 @@ import {findAllByDisplayValue} from "@testing-library/react";
 type MessagePropsType = {
     message: string
     id: number
+    userId: number
     avatarImage: string
 }
 
 const MessageItem = (props: MessagePropsType) => {
-    let a = props.id
+    let a = props.userId
     if (a === 0) {
         return (
             <div className={style.content}>
