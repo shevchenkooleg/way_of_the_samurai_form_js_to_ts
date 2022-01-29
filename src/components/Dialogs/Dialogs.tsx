@@ -9,7 +9,10 @@ type DialogsPropsType = {
     dialogsPage: {
         messages: Array<messagesType>
         dialogs: Array<dialogsType>
-    }
+        newMessageText: string
+    },
+    addMessage: Function
+    newMessageTextAreaUpdate: Function
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -29,7 +32,8 @@ const Dialogs = (props: DialogsPropsType) => {
                 {messagesElements}
             </div>
             <div className={style.textAreaContainer}>
-                <TextAreaFrame/>
+                <TextAreaFrame newMessageText={props.dialogsPage.newMessageText}
+                               newMessageTextAreaUpdate={props.newMessageTextAreaUpdate} addMessage={props.addMessage}/>
             </div>
         </div>
     )

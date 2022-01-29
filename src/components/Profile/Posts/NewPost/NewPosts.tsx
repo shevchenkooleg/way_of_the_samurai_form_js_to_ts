@@ -3,7 +3,7 @@ import style from "./NewPosts.module.css";
 
 type NewPostsPropsType = {
     addPost: Function
-    textAreaUpdate: Function
+    newPostTextAreaUpdate: Function
     newPostText: string
 }
 
@@ -12,13 +12,13 @@ const NewPosts = (props: NewPostsPropsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        let text = newPost.current!.value;
+        // let text = newPost.current!.value;
         props.addPost();
     }
 
     let changeTextArea = () => {
         let text = newPost.current!.value;
-        props.textAreaUpdate(text);
+        props.newPostTextAreaUpdate(text);
     }
 
 

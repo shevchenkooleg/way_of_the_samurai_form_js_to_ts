@@ -66,7 +66,8 @@ let state = {
             {id: 6, userId:0, message: 'Yeah! Let\'s go to the ocean tonight?', avatarImage: avaLinkArray[0]},
             {id: 7, userId:0, message: ':Smile:', avatarImage: avaLinkArray[0]},
             {id: 8, userId:1, message: ')))', avatarImage: avaLinkArray[1]},
-        ]
+        ],
+        newMessageText: ''
     },
     sideBar: {
         onlineStatus: [
@@ -93,13 +94,31 @@ export let addPost = () => {
         }
     )
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state, addPost, textAreaUpdate)
+    rerenderEntireTree(state, addPost, addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate)
 
 }
 
-export let textAreaUpdate = (newText: string) => {
+export let addMessage = () => {
+    state.dialogsPage.messages.push(
+        {
+            id: (state.dialogsPage.messages[state.dialogsPage.messages.length - 1].id + 1),
+            userId: 0,
+            message: state.dialogsPage.newMessageText,
+            avatarImage: avaLinkArray[0]
+        }
+    )
+    state.dialogsPage.newMessageText = ''
+    rerenderEntireTree(state, addPost, addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate)
+}
+
+export let newPostTextAreaUpdate = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state, addPost, textAreaUpdate)
+    rerenderEntireTree(state, addPost, addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate)
+}
+
+export let newMessageTextAreaUpdate = (newText: string) => {
+    state.dialogsPage.newMessageText = newText
+    rerenderEntireTree(state, addPost,addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate)
 }
 
 

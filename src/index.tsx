@@ -1,10 +1,9 @@
-import React from 'react';
-import './index.css';
+// import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, textAreaUpdate} from './redux/state'
+import state, {addMessage, addPost, newMessageTextAreaUpdate, newPostTextAreaUpdate} from './redux/state'
 import { rerenderEntireTree } from './rerender';
 
-rerenderEntireTree(state, addPost, textAreaUpdate);
+rerenderEntireTree(state, addPost,addMessage, newPostTextAreaUpdate, newMessageTextAreaUpdate);
 
 
 

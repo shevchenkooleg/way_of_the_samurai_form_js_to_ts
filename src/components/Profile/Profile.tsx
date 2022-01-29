@@ -12,7 +12,7 @@ type ProfilePropsType = {
         newPostText: string
     },
     addPost: Function,
-    textAreaUpdate: Function
+    newPostTextAreaUpdate: Function
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -21,7 +21,7 @@ const Profile = (props: ProfilePropsType) => {
             <Wallpaper/>
             <Avatar/>
             <Description/>
-            <Posts profilePage={props.profilePage} addPost={props.addPost} textAreaUpdate={props.textAreaUpdate}/>
+            <Posts profilePage={props.profilePage} addPost={props.addPost} newPostTextAreaUpdate={props.newPostTextAreaUpdate}/>
         </div>
     )
 }

@@ -9,8 +9,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {rerenderEntireTree} from "./rerender";
-import state, {textAreaUpdate} from "./redux/state";
 
 export type postsType = {
     id: number
@@ -49,13 +47,16 @@ export type AppPropsType = {
         dialogsPage: {
             dialogs: Array<dialogsType>
             messages: Array<messagesType>
+            newMessageText: string
         },
         sideBar: {
             onlineStatus: Array<onlineStatusType>
         }
     },
     addPost: Function,
-    textAreaUpdate: Function
+    addMessage: Function,
+    newPostTextAreaUpdate: Function,
+    newMessageTextAreaUpdate: Function
 
 }
 
@@ -70,13 +71,16 @@ function App(props: AppPropsType) {
                     <Routes>
                         <Route path='/profile'
                                element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}
-                                                 textAreaUpdate={props.textAreaUpdate}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
+                                                 newPostTextAreaUpdate={props.newPostTextAreaUpdate}/>}/>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage}
+                                                 newMessageTextAreaUpdate={props.newMessageTextAreaUpdate}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                     </Routes>
                 </div>
+
                 <Footer/>
             </div>
         </BrowserRouter>
