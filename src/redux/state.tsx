@@ -13,8 +13,8 @@ let avaLinkArray = [
 let state = {
     profilePage: {
         posts: [
-            {id: 1, post: 'Hi, how are you doing?', likeCount: 15},
-            {id: 2, post: 'This is my first post', likeCount: 20}
+            {id: 1, userId: 0, post: 'Hi, how are you doing?', likeCount: 15},
+            {id: 2, userId: 0, post: 'This is my first post', likeCount: 20}
         ],
         newPostText: ''
     },
@@ -22,54 +22,60 @@ let state = {
         dialogs: [
             {
                 id: 1,
+                userId:1,
                 name: 'Valentina',
                 avaLink: avaLinkArray[1]
             },
             {
                 id: 2,
+                userId:2,
                 name: 'Ilya',
                 avaLink: avaLinkArray[2]
             },
             {
                 id: 3,
+                userId:3,
                 name: 'Elena',
                 avaLink: avaLinkArray[3]
             },
             {
                 id: 4,
+                userId:4,
                 name: 'Sergey',
                 avaLink: avaLinkArray[4]
             },
             {
                 id: 5,
+                userId:5,
                 name: 'Vitaliy',
                 avaLink: avaLinkArray[5]
             },
             {
                 id: 6,
+                userId:6,
                 name: 'Alexandr',
                 avaLink: avaLinkArray[6]
             }
         ],
         messages: [
-            {id: 1, message: 'Hi, how are you doing?', avatarImage: avaLinkArray[1]},
-            {id: 0, message: 'Hi!)', avatarImage: avaLinkArray[0]},
-            {id: 1, message: 'Whats the news?', avatarImage: avaLinkArray[1]},
-            {id: 0, message: 'Oh. Everything great! I am already done my couse project by the biology)', avatarImage: avaLinkArray[0]},
-            {id: 1, message: 'Sound great! Perhaps now you\'ll got much more free time to spend with me)', avatarImage: avaLinkArray[1]},
-            {id: 0, message: 'Yeah! Let\'s go to the ocean tonight?', avatarImage: avaLinkArray[0]},
-            {id: 0, message: ':Smile:', avatarImage: avaLinkArray[0]},
-            {id: 1, message: ')))', avatarImage: avaLinkArray[1]},
+            {id: 1, userId:1, message: 'Hi, how are you doing?', avatarImage: avaLinkArray[1]},
+            {id: 2, userId:0, message: 'Hi!)', avatarImage: avaLinkArray[0]},
+            {id: 3, userId:1, message: 'Whats the news?', avatarImage: avaLinkArray[1]},
+            {id: 4, userId:0, message: 'Oh. Everything great! I am already done my couse project by the biology)', avatarImage: avaLinkArray[0]},
+            {id: 5, userId:1, message: 'Sound great! Perhaps now you\'ll got much more free time to spend with me)', avatarImage: avaLinkArray[1]},
+            {id: 6, userId:0, message: 'Yeah! Let\'s go to the ocean tonight?', avatarImage: avaLinkArray[0]},
+            {id: 7, userId:0, message: ':Smile:', avatarImage: avaLinkArray[0]},
+            {id: 8, userId:1, message: ')))', avatarImage: avaLinkArray[1]},
         ]
     },
     sideBar: {
         onlineStatus: [
-            {id: 1, name: 'Valentina', avaLink: avaLinkArray[1], isOnline: true},
-            {id: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: true},
-            {id: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: true},
-            {id: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
-            {id: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: false},
-            {id: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: true}
+            {userId: 1, name: 'Valentina', avaLink: avaLinkArray[1], isOnline: true},
+            {userId: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: true},
+            {userId: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: true},
+            {userId: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
+            {userId: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: false},
+            {userId: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: true}
         ]
     }
 }
@@ -81,6 +87,7 @@ export let addPost = () => {
     state.profilePage.posts.unshift(
         {
             id: (state.profilePage.posts[state.profilePage.posts.length - 1].id + 1),
+            userId: 0,
             post: state.profilePage.newPostText,
             likeCount: 0
         }

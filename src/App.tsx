@@ -14,24 +14,27 @@ import state, {textAreaUpdate} from "./redux/state";
 
 export type postsType = {
     id: number
+    userId: number
     post: string
     likeCount: number
 }
 
 export type dialogsType = {
     id: number
+    userId: number
     name: string
     avaLink: string
 }
 
 export type messagesType = {
     id: number
+    userId: number
     message: string
     avatarImage: string
 }
 
 export type onlineStatusType = {
-    id: number
+    userId: number
     name: string
     avaLink: string
     isOnline: boolean
