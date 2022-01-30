@@ -53,12 +53,10 @@ export type AppPropsType = {
             onlineStatus: Array<onlineStatusType>
         }
     },
-    addPost: Function,
-    addMessage: Function,
-    newPostTextAreaUpdate: Function,
-    newMessageTextAreaUpdate: Function
+    dispatch: Function
 
 }
+
 
 function App(props: AppPropsType) {
 
@@ -70,11 +68,9 @@ function App(props: AppPropsType) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}
-                                                 newPostTextAreaUpdate={props.newPostTextAreaUpdate}/>}/>
+                               element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage}
-                                                 newMessageTextAreaUpdate={props.newMessageTextAreaUpdate}/>}/>
+                               element={<Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

@@ -23,9 +23,7 @@ type rerenderEntireTreePropsType = {
 let rerenderEntireTree = (state: rerenderEntireTreePropsType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store.getState()} addPost={store.addPost.bind(store)} addMessage={store.addMessage.bind(store)}
-                 newPostTextAreaUpdate={store.newPostTextAreaUpdate.bind(store)}
-                 newMessageTextAreaUpdate={store.newMessageTextAreaUpdate.bind(store)}/>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

@@ -3,8 +3,7 @@ import style from './TextAreaFrame.module.css'
 
 type TextAreaFrameType = {
     newMessageText: string
-    newMessageTextAreaUpdate: Function
-    addMessage: Function
+    dispatch: Function
 }
 
 
@@ -13,12 +12,12 @@ const TextAreaFrame = (props: TextAreaFrameType) => {
     let newMessage = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessage = () => {
-        props.addMessage();
+        props.dispatch( {type: 'ADD-MESSAGE'} );
     }
 
     let changeTextArea = () => {
         let messageText = newMessage.current!.value;
-        props.newMessageTextAreaUpdate(messageText)
+        props.dispatch( {type: 'NEW-MESSAGE-TEXT-AREA-UPDATE', newText: messageText} )
     }
 
     return (

@@ -2,8 +2,7 @@ import React from "react";
 import style from "./NewPosts.module.css";
 
 type NewPostsPropsType = {
-    addPost: Function
-    newPostTextAreaUpdate: Function
+    dispatch: Function
     newPostText: string
 }
 
@@ -12,13 +11,12 @@ const NewPosts = (props: NewPostsPropsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        // let text = newPost.current!.value;
-        props.addPost();
+        props.dispatch( {type: 'ADD-POST'} );
     }
 
     let changeTextArea = () => {
         let text = newPost.current!.value;
-        props.newPostTextAreaUpdate(text);
+        props.dispatch( {type: 'NEW-POST-TEXT-AREA-UPDATE', newText: text} );
     }
 
 
