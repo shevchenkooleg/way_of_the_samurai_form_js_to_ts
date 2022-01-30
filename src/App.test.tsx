@@ -1,12 +1,13 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
 import App from './App';
-import state, {addMessage, addPost, newMessageTextAreaUpdate, newPostTextAreaUpdate} from "./redux/state";
+import store from "./redux/state";
 
 
 test('renders learn react link', () => {
-    render(<App state={state} addPost={addPost} addMessage={addMessage} newPostTextAreaUpdate={newPostTextAreaUpdate}
-                newMessageTextAreaUpdate={newMessageTextAreaUpdate}/>);
+    render(<App state={store.getState()} addPost={store.addPost.bind(store)} addMessage={store.addMessage.bind(store)}
+                newPostTextAreaUpdate={store.newPostTextAreaUpdate.bind(store)}
+                newMessageTextAreaUpdate={store.newMessageTextAreaUpdate.bind(store)}/>);
     const linkElement = screen.getByText(/learn react/i);
     expect(linkElement).toBeInTheDocument();
 });
