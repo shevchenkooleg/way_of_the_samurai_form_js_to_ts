@@ -1,4 +1,5 @@
 import React from "react";
+import { addPostActionCreator, newPostTextAreaUpdateActionCreator } from "../../../../redux/state";
 import style from "./NewPosts.module.css";
 
 type NewPostsPropsType = {
@@ -6,17 +7,18 @@ type NewPostsPropsType = {
     newPostText: string
 }
 
+
 const NewPosts = (props: NewPostsPropsType) => {
 
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        props.dispatch( {type: 'ADD-POST'} );
+        props.dispatch( addPostActionCreator() );
     }
 
     let changeTextArea = () => {
         let text = newPost.current!.value;
-        props.dispatch( {type: 'NEW-POST-TEXT-AREA-UPDATE', newText: text} );
+        props.dispatch( newPostTextAreaUpdateActionCreator(text) );
     }
 
 

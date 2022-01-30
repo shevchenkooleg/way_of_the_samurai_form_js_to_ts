@@ -1,4 +1,5 @@
 import React from "react";
+import { addMessageActionCreator, newMessageTextAreaUpdateActionCreator } from "../../../redux/state";
 import style from './TextAreaFrame.module.css'
 
 type TextAreaFrameType = {
@@ -7,17 +8,19 @@ type TextAreaFrameType = {
 }
 
 
+
+
 const TextAreaFrame = (props: TextAreaFrameType) => {
 
     let newMessage = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessage = () => {
-        props.dispatch( {type: 'ADD-MESSAGE'} );
+        props.dispatch( addMessageActionCreator() );
     }
 
     let changeTextArea = () => {
         let messageText = newMessage.current!.value;
-        props.dispatch( {type: 'NEW-MESSAGE-TEXT-AREA-UPDATE', newText: messageText} )
+        props.dispatch( newMessageTextAreaUpdateActionCreator(messageText) )
     }
 
     return (
