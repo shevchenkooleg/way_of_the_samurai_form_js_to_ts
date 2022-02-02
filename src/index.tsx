@@ -1,26 +1,14 @@
 import reportWebVitals from './reportWebVitals';
 import './index.css'
-import store from './redux/state'
+import store, {storeType} from './redux/state'
 import ReactDOM from "react-dom";
 import React from "react";
-import App, {dialogsType, messagesType, onlineStatusType, postsType} from "./App";
+import App from "./App";
 
-type rerenderEntireTreePropsType = {
-    profilePage: {
-        posts: Array<postsType>
-        newPostText: string
-    },
-    dialogsPage: {
-        dialogs: Array<dialogsType>
-        messages: Array<messagesType>
-        newMessageText: string
-    },
-    sideBar: {
-        onlineStatus: Array<onlineStatusType>
-    }
-}
 
-let rerenderEntireTree = (state: rerenderEntireTreePropsType) => {
+
+
+let rerenderEntireTree = (store: storeType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
@@ -29,7 +17,7 @@ let rerenderEntireTree = (state: rerenderEntireTreePropsType) => {
     );
 }
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree(store);
 
 store.subscribe(rerenderEntireTree)
 
