@@ -1,6 +1,5 @@
 import style from "./MessageItem.module.css";
 import React from "react";
-import {findAllByDisplayValue} from "@testing-library/react";
 
 type MessagePropsType = {
     message: string

@@ -1,5 +1,5 @@
 import React from "react";
-import { addMessageActionCreator, newMessageTextAreaUpdateActionCreator } from "../../../redux/state";
+import { addMessageActionCreator, newMessageTextAreaUpdateActionCreator } from "../../../redux/dialogReducer";
 import style from './TextAreaFrame.module.css'
 
 type TextAreaFrameType = {
