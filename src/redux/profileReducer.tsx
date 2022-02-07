@@ -1,4 +1,4 @@
-import {actionType, profilePageType} from "./state";
+import {actionType, profilePageType} from "./store";
 
 const ADD_POST = 'ADD-POST'
 const NEW_POST_TEXT_AREA_UPDATE = 'NEW-POST-TEXT-AREA-UPDATE'

@@ -1,4 +1,4 @@
-import {actionType, avaLinkArray, dialogsPageType} from "./state";
+import {actionType, avaLinkArray, dialogsPageType} from "./store";
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const NEW_MESSAGE_TEXT_AREA_UPDATE = 'NEW-MESSAGE-TEXT-AREA-UPDATE'
