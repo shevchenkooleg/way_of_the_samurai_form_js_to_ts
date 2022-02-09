@@ -16,28 +16,24 @@ export type postsType = {
     post: string
     likeCount: number
 }
-
 export type dialogsType = {
     id: number
     userId: number
     name: string
     avaLink: string
 }
-
 export type messagesType = {
     id: number
     userId: number
     message: string
     avatarImage: string
 }
-
 export type onlineStatusType = {
     userId: number
     name: string
     avaLink: string
     isOnline: boolean
 }
-
 export type AppPropsType = {
     state: {
         profilePage: {
@@ -68,9 +64,9 @@ function App(props: AppPropsType) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />}/>
+                               element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />}/>
+                               element={<Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

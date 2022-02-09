@@ -1,9 +1,18 @@
-import {actionType, profilePageType} from "./store";
+import {actionType, profilePageType} from "./redux-store";
 
 const ADD_POST = 'ADD-POST'
 const NEW_POST_TEXT_AREA_UPDATE = 'NEW-POST-TEXT-AREA-UPDATE'
 
-const profileReducer = (state: profilePageType, action: actionType) => {
+let initialState = {
+    posts: [
+        {id: 1, userId: 0, post: 'Hi, how are you doing?', likeCount: 15},
+        {id: 2, userId: 0, post: 'This is my first post', likeCount: 20}
+    ],
+    newPostText: ''
+}
+
+
+const profileReducer = (state: profilePageType = initialState, action: actionType) => {
 
 
     switch (action.type) {
