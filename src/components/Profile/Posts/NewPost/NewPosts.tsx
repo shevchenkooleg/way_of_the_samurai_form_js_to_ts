@@ -1,9 +1,9 @@
 import React from "react";
-import { addPostActionCreator, newPostTextAreaUpdateActionCreator } from "../../../../redux/profileReducer";
 import style from "./NewPosts.module.css";
 
 type NewPostsPropsType = {
-    dispatch: Function
+    addNewPost: () => void
+    changeTextArea: (text: string) => void
     newPostText: string
 }
 
@@ -13,12 +13,12 @@ const NewPosts = (props: NewPostsPropsType) => {
     let newPost = React.createRef<HTMLTextAreaElement>();
 
     let addNewPost = () => {
-        props.dispatch( addPostActionCreator() );
+        props.addNewPost();
     }
 
     let changeTextArea = () => {
         let text = newPost.current!.value;
-        props.dispatch( newPostTextAreaUpdateActionCreator(text) );
+        props.changeTextArea(text);
     }
 
 

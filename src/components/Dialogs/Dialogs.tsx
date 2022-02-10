@@ -5,13 +5,17 @@ import DialogItem from "./Dialog/DialogItem";
 import {dialogsType, messagesType} from "../../App";
 import TextAreaFrame from "./TextAreaFrame/TextAreaFrame";
 
+
+
 type DialogsPropsType = {
     dialogsPage: {
         messages: Array<messagesType>
         dialogs: Array<dialogsType>
         newMessageText: string
     },
-    dispatch: Function
+    addNewMessage: () => void
+    changeTextArea: (messageText: string) => void
+
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -32,7 +36,7 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={style.textAreaContainer}>
                 <TextAreaFrame newMessageText={props.dialogsPage.newMessageText}
-                               dispatch={props.dispatch}/>
+                               addNewMessage={props.addNewMessage} changeTextArea={props.changeTextArea}/>
             </div>
         </div>
     )

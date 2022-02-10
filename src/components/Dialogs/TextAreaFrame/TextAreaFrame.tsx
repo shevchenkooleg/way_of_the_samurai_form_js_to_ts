@@ -1,26 +1,26 @@
 import React from "react";
-import { addMessageActionCreator, newMessageTextAreaUpdateActionCreator } from "../../../redux/dialogReducer";
 import style from './TextAreaFrame.module.css'
 
-type TextAreaFrameType = {
+type TextAreaFramePropsType = {
     newMessageText: string
-    dispatch: Function
+    addNewMessage: () => void
+    changeTextArea: (messageText: string) => void
 }
 
 
 
 
-const TextAreaFrame = (props: TextAreaFrameType) => {
+const TextAreaFrame = (props: TextAreaFramePropsType) => {
 
     let newMessage = React.createRef<HTMLTextAreaElement>();
 
     let addNewMessage = () => {
-        props.dispatch( addMessageActionCreator() );
+        props.addNewMessage();
     }
 
     let changeTextArea = () => {
         let messageText = newMessage.current!.value;
-        props.dispatch( newMessageTextAreaUpdateActionCreator(messageText) )
+        props.changeTextArea(messageText)
     }
 
     return (

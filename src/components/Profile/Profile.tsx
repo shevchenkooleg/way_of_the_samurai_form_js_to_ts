@@ -1,17 +1,13 @@
 import React from "react";
 import style from "./Profile.module.css";
-import Posts from "./Posts/Posts";
 import Wallpaper from "./Wallpaper/Wallpaper";
 import Avatar from "./Avatar/Avatar";
 import Description from "./Description/Description";
-import {postsType} from "../../App";
+import {StoreType} from "../../index";
+import PostsContainer from "./Posts/PostsContainer";
 
 type ProfilePropsType = {
-    profilePage: {
-        posts: Array<postsType>
-        newPostText: string
-    },
-    dispatch: Function
+    store: StoreType
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -20,7 +16,7 @@ const Profile = (props: ProfilePropsType) => {
             <Wallpaper/>
             <Avatar/>
             <Description/>
-            <Posts profilePage={props.profilePage} dispatch={props.dispatch} />
+            <PostsContainer store={props.store} />
         </div>
     )
 }

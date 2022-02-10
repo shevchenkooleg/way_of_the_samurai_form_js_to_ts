@@ -58,6 +58,9 @@ export type actionType = {
     newText: string
 }
 
+type RootReducerType = typeof reducers; // (globalstate: AppStateType) => AppStateType
+export type AppStateType = ReturnType<RootReducerType>
+
 
 let reducers = combineReducers({
     profilePage: profileReducer,

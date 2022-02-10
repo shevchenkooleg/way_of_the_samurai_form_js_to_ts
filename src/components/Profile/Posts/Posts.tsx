@@ -10,7 +10,8 @@ type ProfilePropsType = {
         posts: Array<postsType>
         newPostText: string
     },
-    dispatch: Function
+    addNewPost: () => void
+    changeTextArea: (text: string) => void
 }
 
 
@@ -20,7 +21,8 @@ const Posts = (props: ProfilePropsType) => {
 
     return (
         <div className={style.posts}>
-            <NewPosts dispatch={props.dispatch} newPostText={props.profilePage.newPostText}/>
+            <NewPosts addNewPost={props.addNewPost} changeTextArea={props.changeTextArea}
+                      newPostText={props.profilePage.newPostText}/>
             {postsElements}
         </div>
     )
