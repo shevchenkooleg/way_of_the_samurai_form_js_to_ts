@@ -77,26 +77,25 @@ let initialState = {
 
 export const dialogReducer = (state: dialogsPageType = initialState, action: actionType) => {
 
+    let stateCopy
+
     switch (action.type) {
-        case ADD_MESSAGE: {
-            let stateCopy = {...state}
-            stateCopy.messages = [...state.messages]
+        case ADD_MESSAGE:
+            stateCopy = {...state, messages: [...state.messages], newMessageText: ''}
             stateCopy.messages.push(
                 {
                     id: (stateCopy.messages[stateCopy.messages.length - 1].id + 1),
                     userId: 0,
-                    message: stateCopy.newMessageText,
+                    message: state.newMessageText,
                     avatarImage: avaLinkArray[0]
                 }
             )
-            stateCopy.newMessageText = ''
             return stateCopy
-        }
-        case NEW_MESSAGE_TEXT_AREA_UPDATE: {
-            let stateCopy = {...state}
-            stateCopy.newMessageText = action.newText
+
+        case NEW_MESSAGE_TEXT_AREA_UPDATE:
+            stateCopy = {...state, newMessageText: action.newText}
             return stateCopy
-        }
+
         default:
             return state
     }

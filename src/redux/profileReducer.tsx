@@ -5,8 +5,8 @@ const NEW_POST_TEXT_AREA_UPDATE = 'NEW-POST-TEXT-AREA-UPDATE'
 
 let initialState = {
     posts: [
-        {id: 1, userId: 0, post: 'Hi, how are you doing?', likeCount: 15},
-        {id: 2, userId: 0, post: 'This is my first post', likeCount: 20}
+        {id: 2, userId: 0, post: 'Hi, how are you doing?', likeCount: 15},
+        {id: 1, userId: 0, post: 'This is my first post', likeCount: 20}
     ],
     newPostText: ''
 }
@@ -14,27 +14,27 @@ let initialState = {
 
 const profileReducer = (state: profilePageType = initialState, action: actionType) => {
 
+    let stateCopy
 
     switch (action.type) {
-        case ADD_POST: {
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(
+        case ADD_POST:
+            stateCopy = {...state, posts: [...state.posts], newPostText: ''}
+            stateCopy.posts.unshift(
                 {
-                    id: (stateCopy.posts[stateCopy.posts.length - 1].id + 1),
+                    id: (stateCopy.posts[0].id + 1),
                     userId: 0,
-                    post: stateCopy.newPostText,
+                    post: state.newPostText,
                     likeCount: 0
                 }
             )
-            stateCopy.newPostText = ''
+
             return stateCopy
-        }
-        case NEW_POST_TEXT_AREA_UPDATE: {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText
+
+        case NEW_POST_TEXT_AREA_UPDATE:
+            stateCopy = {...state,
+                newPostText: action.newText}
             return stateCopy
-        }
+
         default:
             return state
     }
