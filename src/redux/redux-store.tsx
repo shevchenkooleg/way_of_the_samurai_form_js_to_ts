@@ -68,6 +68,11 @@ let reducers = combineReducers({
     sideBar: sidebarReducer,
 })
 
+type store = any
+
 let store = createStore(reducers);
+
+declare var window: any
+window.store = store;
 
 export default store

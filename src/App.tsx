@@ -9,7 +9,6 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from './components/Navbar/NavbarContainer';
-import { StoreType } from './index';
 
 export type postsType = {
     id: number
@@ -49,24 +48,21 @@ export type StateType = {
         onlineStatus: Array<onlineStatusType>
     }
 }
-export type AppPropsType = {
-    store: StoreType
-}
 
 
-function App(props: AppPropsType) {
+function App() {
 
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <NavbarContainer store={props.store}/>
+                <NavbarContainer />
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile store={props.store}/>}/>
+                               element={<Profile />}/>
                         <Route path='/dialogs/*'
-                               element={<DialogsContainer store={props.store}/>}/>
+                               element={<DialogsContainer />}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

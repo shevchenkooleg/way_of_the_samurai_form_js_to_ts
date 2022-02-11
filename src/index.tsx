@@ -4,29 +4,27 @@ import store from './redux/redux-store'
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
+import { Provider } from 'react-redux';
 
-export type StoreType = any
-// export type StoreType = {
-//     state: StateType
-//     dispatch: (action: string) => void
-//     getState: () => {state: StateType}
+
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
+
+// let rerenderEntireTree = () => {
+//
 // }
+//
+// rerenderEntireTree();
 
-
-let rerenderEntireTree = (store: StoreType) => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <App store={store}/>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-rerenderEntireTree(store);
-
-store.subscribe( () => {
-    rerenderEntireTree(store)
-})
+// store.subscribe( () => {
+//     rerenderEntireTree()
+// })
 
 
 // If you want to start measuring performance in your app, pass a function

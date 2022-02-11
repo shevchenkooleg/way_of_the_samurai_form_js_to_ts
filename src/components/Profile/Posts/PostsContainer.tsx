@@ -1,31 +1,24 @@
 import React from "react";
-import style from "./Posts.module.css";
-import {StoreType} from "../../../index";
 import Posts from "./Posts";
 import {addPostActionCreator, newPostTextAreaUpdateActionCreator} from "../../../redux/profileReducer";
+import {connect} from "react-redux";
+import {StateType} from "../../../App";
 
 
-type ProfileContainerPropsType = {
-    store: StoreType
+
+let mapStateToProps = (state: StateType) => {
+    return {
+        profilePage: state.profilePage
+    }
 }
 
-
-const PostsContainer = (props: ProfileContainerPropsType) => {
-
-    let addNewPost = () => {
-        props.store.dispatch(addPostActionCreator());
+let mapDispatchToProps = (dispatch: Function) => {
+    return {
+        addNewPost: () => {dispatch(addPostActionCreator());},
+        changeTextArea: (text: string) => {dispatch(newPostTextAreaUpdateActionCreator(text));}
     }
-
-    let changeTextArea = (text: string) => {
-        props.store.dispatch(newPostTextAreaUpdateActionCreator(text));
-    }
-
-    return (
-        <div className={style.posts}>
-            <Posts addNewPost={addNewPost} changeTextArea={changeTextArea}
-                   profilePage={props.store.getState().profilePage}/>
-        </div>
-)
 }
+
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
 
 export default PostsContainer;
