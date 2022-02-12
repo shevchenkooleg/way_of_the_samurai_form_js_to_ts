@@ -1,0 +1,23 @@
+.userDataBlock {
+    display: grid;
+    grid-template-areas:
+    'avatar content';
+    grid-template-columns: 1fr 12fr;
+    margin: 20px 20px 20px 20px;
+    grid-gap: 30px;
+    border: black solid 1px;
+}
+
+.avatar {
+    grid-area: avatar;
+    display: grid;
+}
+
+.avatar img {
+    width: 100px
+}
+
+.content {
+    grid-area: content;
+    display:grid;
+}

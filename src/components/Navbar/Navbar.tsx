@@ -27,6 +27,10 @@ const Navbar = (props: NavbarPropsType) => {
                              className={navData => navData.isActive ? style.active : style.item}>Messages</NavLink>
                 </div>
                 <div className={style.item}>
+                    <NavLink to='/users'
+                             className={navData => navData.isActive ? style.active : style.item}>Users</NavLink>
+                </div>
+                <div className={style.item}>
                     <NavLink to='/news'
                              className={navData => navData.isActive ? style.active : style.item}>News</NavLink>
                 </div>

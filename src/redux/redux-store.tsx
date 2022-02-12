@@ -2,6 +2,7 @@ import {combineReducers, createStore} from "redux";
 import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
+import usersReducer from "./usersReducer";
 
 type postsType = {
     id: number
@@ -27,6 +28,10 @@ type onlineStatusType = {
     avaLink: string
     isOnline: boolean
 }
+export type locationType = {
+    country: string
+    city: string
+}
 export type profilePageType = {
     posts: Array<postsType>
     newPostText: string
@@ -38,6 +43,19 @@ export type dialogsPageType = {
 }
 export type sideBarType = {
     onlineStatus: Array<onlineStatusType>
+}
+export type usersType = {
+    id: number
+    userID: number
+    avaLink: string
+    followed: boolean
+    isOnline: boolean
+    fullName: string
+    status: string
+    location: locationType
+}
+export type usersPageType = {
+    users: Array<usersType>
 }
 export type stateType = {
     profilePage: {
@@ -56,16 +74,19 @@ export type stateType = {
 export type actionType = {
     type: string
     newText: string
+    userID: number
+    users: Array<usersType>
 }
 
-type RootReducerType = typeof reducers; // (globalstate: AppStateType) => AppStateType
-export type AppStateType = ReturnType<RootReducerType>
+// type RootReducerType = typeof reducers; // (globalstate: AppStateType) => AppStateType
+// export type AppStateType = ReturnType<RootReducerType>
 
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogReducer,
     sideBar: sidebarReducer,
+    usersPage: usersReducer
 })
 
 type store = any
