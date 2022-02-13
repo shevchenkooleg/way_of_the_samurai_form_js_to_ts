@@ -46,7 +46,7 @@ export type sideBarType = {
 }
 export type usersType = {
     id: number
-    userID: number
+    userId: number
     avaLink: string
     followed: boolean
     isOnline: boolean
@@ -74,7 +74,7 @@ export type stateType = {
 export type actionType = {
     type: string
     newText: string
-    userID: number
+    userId: number
     users: Array<usersType>
 }
 

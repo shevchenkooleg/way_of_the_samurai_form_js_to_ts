@@ -17,7 +17,7 @@ type ProfilePropsType = {
 
 const Posts = (props: ProfilePropsType) => {
 
-    let postsElements = props.profilePage.posts.map(el => <Post message={el.post} likeCount={el.likeCount}/>)
+    let postsElements = props.profilePage.posts.map(el => <Post key={el.id} message={el.post} likeCount={el.likeCount}/>)
 
     return (
         <div className={style.posts}>

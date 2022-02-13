@@ -17,16 +17,16 @@ let avaLinkArray = [
 
 let initialState = {
     users: [
-        {
-            id: 0,
-            userID: 0,
-            avaLink: avaLinkArray[0],
-            followed: true,
-            isOnline: true,
-            fullName: 'Oleg Sh.',
-            status: 'I am the creator',
-            location: {country: 'Russia', city: 'Sochi'}
-        }
+        // {
+        //     id: 0,
+        //     userId: 0,
+        //     avaLink: avaLinkArray[0],
+        //     followed: true,
+        //     isOnline: true,
+        //     fullName: 'Oleg Sh.',
+        //     status: 'I am the creator',
+        //     location: {country: 'Russia', city: 'Sochi'}
+        // }
     ]
 }
 // let initialState = {
@@ -103,7 +103,7 @@ const usersReducer = (state: usersPageType = initialState, action: actionType) =
             return {
                 ...state,
                 users: state.users.map( u => {
-                    if (u.userID === action.userID) {
+                    if (u.userId === action.userId) {
                         return {...u, followed: true}
                     }
                     return u;
@@ -114,7 +114,7 @@ const usersReducer = (state: usersPageType = initialState, action: actionType) =
             return {
                 ...state,
                 users: state.users.map( u => {
-                    if (u.userID === action.userID) {
+                    if (u.userId === action.userId) {
                         return {...u, followed: false}
                     }
                     return u;
@@ -130,12 +130,12 @@ const usersReducer = (state: usersPageType = initialState, action: actionType) =
 };
 
 
-export const followAC = (userID: number) => {
-    return {type: FOLLOW, userID}
+export const followAC = (userId: number) => {
+    return {type: FOLLOW, userId: userId}
 }
 
-export const unfollowAC = (userID: number) => {
-    return {type: UNFOLLOW, userID}
+export const unfollowAC = (userId: number) => {
+    return {type: UNFOLLOW, userId: userId}
 }
 
 export const setUsersAC = (users: Array<usersType>) => {

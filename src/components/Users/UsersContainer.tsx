@@ -6,7 +6,7 @@ import {usersType} from "../../redux/redux-store";
 
 let mapStateToProps = (state: StateType) => {
     return {
-        usersPage: state.usersPage
+        users: state.usersPage.users
     }
 }
 

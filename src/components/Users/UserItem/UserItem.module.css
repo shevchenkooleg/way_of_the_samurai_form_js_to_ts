@@ -5,7 +5,9 @@
     grid-template-columns: 1fr 12fr;
     margin: 20px 20px 20px 20px;
     grid-gap: 30px;
-    border: black solid 1px;
+    border: #CECECE solid 5px;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .avatar {
@@ -14,10 +16,32 @@
 }
 
 .avatar img {
-    width: 100px
+    width: 100px;
 }
 
 .content {
     grid-area: content;
     display:grid;
+    grid-template-areas:
+    'name country'
+    'status city';
+    grid-template-columns: 1fr 1fr;
+}
+
+.name {
+    grid-area: name;
+    align-self: center;
+}
+.status {
+    grid-area: status;
+}
+.country {
+    grid-area: country;
+    justify-self: end;
+    align-self: center;
+}
+.city {
+    grid-area: city;
+    justify-self: end;
+
 }

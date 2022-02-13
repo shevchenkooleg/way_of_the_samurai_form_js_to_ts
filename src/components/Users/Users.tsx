@@ -1,15 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {usersType} from '../../redux/redux-store';
 import style from './Users.module.css'
 import UserItem from "./UserItem/UserItem";
 
 type UsersPropsType = {
-    usersPage: {
-        users: Array<usersType>
-    }
-    follow: Function
-    unfollow: Function
-    setUsers: Function
+    users: Array<usersType>
+    follow: (userId:number) => void
+    unfollow: (userId:number) => void
+    setUsers: (users:Array<usersType>) => void
 }
 
 let avaLinkArray = [
@@ -24,77 +22,83 @@ let avaLinkArray = [
 
 const Users = (props: UsersPropsType) => {
 
-    if (props.usersPage.users.length === 1) {
-        props.setUsers([
-            {
-                id: 1,
-                userId: 1,
-                avaLink: avaLinkArray[1],
-                followed: true,
-                isOnline: true,
-                fullName: 'Valentina F.',
-                status: 'I am so pretty',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-            {
-                id: 2,
-                userId: 2,
-                avaLink: avaLinkArray[2],
-                followed: true,
-                isOnline: false,
-                fullName: 'Ilya Sh.',
-                status: 'I like English!!!',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-            {
-                id: 3,
-                userId: 3,
-                avaLink: avaLinkArray[3],
-                followed: false,
-                isOnline: false,
-                fullName: 'Elena Sh.',
-                status: 'women\'s club every day',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-            {
-                id: 4,
-                userId: 4,
-                avaLink: avaLinkArray[4],
-                followed: true,
-                isOnline: true,
-                fullName: 'Sergey K.',
-                status: 'Like a boss',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-            {
-                id: 5,
-                userId: 5,
-                avaLink: avaLinkArray[5],
-                followed: true,
-                isOnline: false,
-                fullName: 'Vitaliy Sh.',
-                status: 'I like Sevastopol very much',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-            {
-                id: 6,
-                userId: 6,
-                avaLink: avaLinkArray[6],
-                followed: false,
-                isOnline: true,
-                fullName: 'Alexander B.',
-                status: 'Whose you daddy?!',
-                location: {country: 'Russia', city: 'Sochi'}
-            },
-        ])
-    }
+    useEffect(() => {
+        if (!props.users.length) {
+            props.setUsers([
+                {
+                    id: 1,
+                    userId: 1,
+                    avaLink: avaLinkArray[1],
+                    followed: true,
+                    isOnline: true,
+                    fullName: 'Valentina F.',
+                    status: 'I am so pretty',
+                    location: {country: 'Russia', city: 'Sochi'}
+                },
+                {
+                        id: 2,
+                        userId: 2,
+                        avaLink: avaLinkArray[2],
+                        followed: true,
+                        isOnline: false,
+                        fullName: 'Ilya Sh.',
+                        status: 'I like English!!!',
+                        location: {country: 'Russia', city: 'Sochi'}
+                    },
+                    {
+                        id: 3,
+                        userId: 3,
+                        avaLink: avaLinkArray[3],
+                        followed: false,
+                        isOnline: false,
+                        fullName: 'Elena Sh.',
+                        status: 'women\'s club every day',
+                        location: {country: 'Russia', city: 'Sochi'}
+                    },
+                    {
+                        id: 4,
+                        userId: 4,
+                        avaLink: avaLinkArray[4],
+                        followed: true,
+                        isOnline: true,
+                        fullName: 'Sergey K.',
+                        status: 'Like a boss',
+                        location: {country: 'Russia', city: 'Volgograd'}
+                    },
+                    {
+                        id: 5,
+                        userId: 5,
+                        avaLink: avaLinkArray[5],
+                        followed: true,
+                        isOnline: false,
+                        fullName: 'Vitaliy Sh.',
+                        status: 'I like Sevastopol very much',
+                        location: {country: 'Russia', city: 'Sevastopol'}
+                    },
+                    {
+                        id: 6,
+                        userId: 6,
+                        avaLink: avaLinkArray[6],
+                        followed: false,
+                        isOnline: true,
+                        fullName: 'Alexander B.',
+                        status: 'Whose you daddy?!',
+                        location: {country: 'Russia', city: 'Sochi'}
+                    },
+                ])
+        }
+        },
+        [props.users.length])
 
-    let user = props.usersPage.users.map(u => <UserItem avaLink={u.avaLink} followed={u.followed} userID={u.userID}
-                                                        status={u.status} isOnline={u.isOnline} fullName={u.fullName}
-                                                        location={u.location}/>)
+    // let user = props.users.map(u => <UserItem key={u.userId} avaLink={u.avaLink} followed={u.followed} userId={u.userId}
+    //                                                     status={u.status} isOnline={u.isOnline} fullName={u.fullName}
+    //                                                     location={u.location} follow={props.follow} unfollow={props.unfollow}/>)
     return (
         <div className={style.content}>
-            {user}
+            {props.users.map(u => <UserItem key={u.userId} avaLink={u.avaLink} followed={u.followed} userId={u.userId}
+                                            status={u.status} isOnline={u.isOnline} fullName={u.fullName}
+                                            location={u.location} follow={props.follow} unfollow={props.unfollow}/>)
+            }
         </div>
     );
 };
