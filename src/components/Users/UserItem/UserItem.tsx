@@ -15,7 +15,6 @@ type UserItemPropsType = {
 }
 
 const UserItem = (props: UserItemPropsType) => {
-    // debugger
     return (
         <div className={style.userDataBlock}>
             <div className={style.avatar}>
