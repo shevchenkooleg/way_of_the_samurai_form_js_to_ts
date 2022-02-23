@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {usersType} from '../../redux/redux-store';
 import style from './Users.module.css'
 import UserItem from "./UserItem/UserItem";
+import UserItemC from './UserItem/UserItemC';
 
 type UsersPropsType = {
     users: Array<usersType>
@@ -95,7 +96,7 @@ const Users = (props: UsersPropsType) => {
     //                                                     location={u.location} follow={props.follow} unfollow={props.unfollow}/>)
     return (
         <div className={style.content}>
-            {props.users.map(u => <UserItem key={u.userId} avaLink={u.avaLink} followed={u.followed} userId={u.userId}
+            {props.users.map(u => <UserItemC key={u.userId} avaLink={u.avaLink} followed={u.followed} userId={u.userId}
                                             status={u.status} isOnline={u.isOnline} fullName={u.fullName}
                                             location={u.location} follow={props.follow} unfollow={props.unfollow}/>)
             }
