@@ -1,39 +1,27 @@
 import React from 'react';
-import {locationType} from "../../../redux/redux-store";
 import style from './UserItem.module.css'
 
-type UserItemPropsType = {
-    userId: number
-    avaLink: string
-    followed: boolean
-    isOnline: boolean
-    fullName: string
-    status: string
-    location: locationType
-    follow: (userId:number) => void
-    unfollow: (userId:number) => void
-}
 
-const UserItem = (props: UserItemPropsType) => {
-    // debugger
-    return (
-        <div className={style.userDataBlock}>
-            <div className={style.avatar}>
-                <img src={props.avaLink} alt="avatar"/>
-                {props.followed ? <button onClick={() => {
-                    props.unfollow(props.userId)
-                }}>Unfollow</button> : <button onClick={() => {
-                    props.follow(props.userId)
-                }}>Follow</button>}
+class UserItem extends React.Component<any, any> {
+    render() {
+        return (
+            <div className={style.userDataBlock}>
+                <div className={style.avatar}>
+                    <img src={this.props.avaLink} alt="avatar"/>
+                    {this.props.followed ?
+                        <button onClick={() => {this.props.unfollow(this.props.userId)}}>Unfollow</button> :
+                        <button onClick={() => {this.props.follow(this.props.userId)}}>Follow</button>
+                    }
+                </div>
+                <div className={style.content}>
+                    <div className={style.name}>{this.props.fullName}</div>
+                    <div className={style.status}>{this.props.status}</div>
+                    <div className={style.country}>{this.props.location.country},</div>
+                    <div className={style.city}>{this.props.location.city}</div>
+                </div>
             </div>
-            <div className={style.content}>
-                <div className={style.name}>{props.fullName}</div>
-                <div className={style.status}>{props.status}</div>
-                <div className={style.country}>{props.location.country},</div>
-                <div className={style.city}>{props.location.city}</div>
-            </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default UserItem;
