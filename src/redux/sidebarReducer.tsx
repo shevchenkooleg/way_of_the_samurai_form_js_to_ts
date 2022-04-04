@@ -16,7 +16,7 @@ let initialState = {
         {userId: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: true},
         {userId: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: true},
         {userId: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
-        {userId: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: false},
+        {userId: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: true},
         {userId: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: true}
     ]
 }

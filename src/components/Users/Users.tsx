@@ -40,7 +40,7 @@ const Users = (props: UsersPropsType) => {
                         userId: 2,
                         avaLink: avaLinkArray[2],
                         followed: true,
-                        isOnline: false,
+                        isOnline: true,
                         fullName: 'Ilya Sh.',
                         status: 'I like English!!!',
                         location: {country: 'Russia', city: 'Sochi'}
