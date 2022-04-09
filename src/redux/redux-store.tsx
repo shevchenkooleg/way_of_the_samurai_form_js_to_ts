@@ -3,6 +3,7 @@ import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
+import {usersFromServerType} from "../components/Users/Users";
 
 type postsType = {
     id: number
@@ -55,7 +56,7 @@ export type usersType = {
     location: locationType
 }
 export type usersPageType = {
-    users: Array<usersType>
+    users: Array<usersFromServerType>
 }
 export type stateType = {
     profilePage: {

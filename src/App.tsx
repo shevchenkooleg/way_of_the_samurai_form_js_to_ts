@@ -11,6 +11,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from "./components/Users/UsersContainer";
 import {usersType} from "./redux/redux-store";
+import {usersFromServerType} from "./components/Users/Users";
 
 export type postsType = {
     id: number
@@ -50,7 +51,7 @@ export type StateType = {
         onlineStatus: Array<onlineStatusType>
     }
     usersPage: {
-        users: Array<usersType>
+        users: Array<usersFromServerType>
     }
 }
 

@@ -1,4 +1,5 @@
 import {actionType, usersPageType, usersType} from "./redux-store";
+import {usersFromServerType} from "../components/Users/Users";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -103,7 +104,7 @@ const usersReducer = (state: usersPageType = initialState, action: actionType) =
             return {
                 ...state,
                 users: state.users.map( u => {
-                    if (u.userId === action.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
                     return u;
@@ -114,14 +115,14 @@ const usersReducer = (state: usersPageType = initialState, action: actionType) =
             return {
                 ...state,
                 users: state.users.map( u => {
-                    if (u.userId === action.userId) {
+                    if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
                     return u;
                 } )
             }
         case SET_USERS:
-            debugger
+            // debugger
             return {...state, users: [...state.users, ...action.users]}
 
         default:
@@ -138,7 +139,7 @@ export const unfollowAC = (userId: number) => {
     return {type: UNFOLLOW, userId: userId}
 }
 
-export const setUsersAC = (users: Array<usersType>) => {
+export const setUsersAC = (users: Array<usersFromServerType>) => {
     return {type: SET_USERS, users}
 }
 

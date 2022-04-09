@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useEffect} from 'react';
+import React from 'react';
 import UserItem from './UserItem/UserItem';
 import style from './Users.module.css'
 
@@ -32,104 +32,27 @@ let avaLinkArray = [
     'https://spng.pngfind.com/pngs/s/521-5217216_male-icons-free-and-clipart-avatar-hd-png.png'
 ]
 
-const Users = (props: UsersPropsType) => {
-
-    let getUsers = ()=> {
-        if (props.users.length === 0) {
+class Users extends React.Component<UsersPropsType> {
+    constructor(props:UsersPropsType){
+        super(props);
+        if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
                 console.log(response.data.items)
-                props.setUsers(response.data.items);
+                this.props.setUsers(response.data.items);
             });
         }
-            // useEffect(() => {
-            //
-            // }, [props.users.length])
-    };
+    }
 
-        // useEffect(() => {
-        //     if (!props.users.length) {
-        //         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-        //             // debugger;
-        //             console.log(response.data.items)
-        //         });
-        //         props.setUsers([
-        //             {
-        //                 id: 1,
-        //                 userId: 1,
-        //                 avaLink: avaLinkArray[1],
-        //                 followed: true,
-        //                 isOnline: true,
-        //                 fullName: 'Valentina F.',
-        //                 status: 'I am so pretty',
-        //                 location: {country: 'Russia', city: 'Sochi'}
-        //             },
-        //             {
-        //                     id: 2,
-        //                     userId: 2,
-        //                     avaLink: avaLinkArray[2],
-        //                     followed: true,
-        //                     isOnline: true,
-        //                     fullName: 'Ilya Sh.',
-        //                     status: 'I like English!!!',
-        //                     location: {country: 'Russia', city: 'Sochi'}
-        //                 },
-        //                 {
-        //                     id: 3,
-        //                     userId: 3,
-        //                     avaLink: avaLinkArray[3],
-        //                     followed: false,
-        //                     isOnline: false,
-        //                     fullName: 'Elena Sh.',
-        //                     status: 'women\'s club every day',
-        //                     location: {country: 'Russia', city: 'Sochi'}
-        //                 },
-        //                 {
-        //                     id: 4,
-        //                     userId: 4,
-        //                     avaLink: avaLinkArray[4],
-        //                     followed: true,
-        //                     isOnline: true,
-        //                     fullName: 'Sergey K.',
-        //                     status: 'Like a boss',
-        //                     location: {country: 'Russia', city: 'Volgograd'}
-        //                 },
-        //                 {
-        //                     id: 5,
-        //                     userId: 5,
-        //                     avaLink: avaLinkArray[5],
-        //                     followed: true,
-        //                     isOnline: false,
-        //                     fullName: 'Vitaliy Sh.',
-        //                     status: 'I like Sevastopol very much',
-        //                     location: {country: 'Russia', city: 'Sevastopol'}
-        //                 },
-        //                 {
-        //                     id: 6,
-        //                     userId: 6,
-        //                     avaLink: avaLinkArray[6],
-        //                     followed: false,
-        //                     isOnline: true,
-        //                     fullName: 'Alexander B.',
-        //                     status: 'Whose you daddy?!',
-        //                     location: {country: 'Russia', city: 'Sochi'}
-        //                 },
-        //             ])
-        //     }
-        //     },
-        //     [props.users.length])
-
-        // let user = props.users.map(u => <UserItemC key={u.userId} avaLink={u.avaLink} followed={u.followed} userId={u.userId}
-        //                                                     status={u.status} isOnline={u.isOnline} fullName={u.fullName}
-        //                                                     location={u.location} follow={props.follow} unfollow={props.unfollow}/>)
+    render = () => {
         return (
             <div className={style.content}>
-                <button onClick={getUsers}>get users</button>
-                {props.users.map(u => <UserItem key={u.id} avaLink={u.photos.small ? u.photos.small : avaLinkArray[2]} followed={u.followed} userId={u.id}
-                    // status={u.status} fullName={u.name} follow={props.follow} unfollow={props.unfollow}/>)
-                                                status={u.status} fullName={u.name}/>)
+                {this.props.users.map(u =>
+                    <UserItem key={u.id} avaLink={u.photos.small ? u.photos.small : avaLinkArray[2]}
+                              followed={u.followed} userId={u.id} status={u.status} fullName={u.name}/>)
                 }
             </div>
         );
     }
+}
 
-    export default Users;
+export default Users;

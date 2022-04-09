@@ -15,9 +15,9 @@ class UserItem extends React.Component<any, any> {
                 </div>
                 <div className={style.content}>
                     <div className={style.name}>{this.props.fullName}</div>
-                    <div className={style.status}>{this.props.status}</div>
-                    <div className={style.country}>{this.props.location.country},</div>
-                    <div className={style.city}>{this.props.location.city}</div>
+                    {/*<div className={style.status}>{this.props.status}</div>*/}
+                    {/*<div className={style.country}>{this.props.location.country},</div>*/}
+                    {/*<div className={style.city}>{this.props.location.city}</div>*/}
                 </div>
             </div>
         );
