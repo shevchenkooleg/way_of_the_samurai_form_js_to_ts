@@ -4,7 +4,6 @@ import {usersFromServerType} from '../../redux/redux-store';
 import UserItem from './UserItem/UserItem';
 import style from './Users.module.css'
 
-
 type UsersPropsType = {
     users: Array<usersFromServerType>
     pageSize: number
