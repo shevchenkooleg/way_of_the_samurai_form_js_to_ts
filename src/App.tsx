@@ -10,7 +10,7 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from "./components/Users/UsersContainer";
-import { usersFromServerType } from './redux/redux-store';
+import {usersFromServerType, usersPageType} from './redux/redux-store';
 
 export type postsType = {
     id: number
@@ -49,9 +49,7 @@ export type StateType = {
     sideBar: {
         onlineStatus: Array<onlineStatusType>
     }
-    usersPage: {
-        users: Array<usersFromServerType>
-    }
+    usersPage: usersPageType
 }
 
 

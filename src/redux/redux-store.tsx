@@ -67,6 +67,9 @@ export type usersFromServerType = {
 }
 export type usersPageType = {
     users: Array<usersFromServerType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 export type stateType = {
     profilePage: {

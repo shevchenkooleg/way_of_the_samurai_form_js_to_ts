@@ -1,0 +1,14 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.selectedPage {
+    font-weight: bold;
+    color: #f75411;
+    font-size: 120%;
+}
+
+.unselectedPage {
+    padding: 0 2px 0 2px;
+}

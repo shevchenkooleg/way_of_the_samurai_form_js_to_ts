@@ -7,9 +7,14 @@ import style from './Users.module.css'
 
 type UsersPropsType = {
     users: Array<usersFromServerType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<usersFromServerType>) => void
+    setCurrentPage: (page:number) => void
+    setTotalUsersCount: (totalUsersCount:number) => void
 }
 
 let avaLinkArray = [
@@ -23,20 +28,54 @@ let avaLinkArray = [
 ]
 
 class Users extends React.Component<UsersPropsType> {
-    constructor(props: UsersPropsType) {
-        super(props);
-        alert('users')
+    componentDidMount = () => {
         if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
                 console.log(response.data.items)
                 this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
             });
         }
     }
 
+    onPageChanged = (newPage: number) => {
+        this.props.setCurrentPage(newPage);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPage}&count=${this.props.pageSize}`).then(response => {
+            console.log(response.data.items)
+            this.props.setUsers(response.data.items);
+        });
+
+    }
     render = () => {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
+        let pagesForPagination = [];
+        if (this.props.currentPage>10 && pagesCount - this.props.currentPage > 10) {
+            for (let i = this.props.currentPage - 10; i<=this.props.currentPage + 10; i++)
+                pagesForPagination.push(i)
+        } else if (0 < this.props.currentPage && this.props.currentPage<=10) {
+            for (let i = 1; i<=20; i++)
+                pagesForPagination.push(i)
+        } else if (pagesCount - this.props.currentPage <= 10 ) {
+            for (let i = pagesCount - 20; i<=pagesCount; i++)
+                pagesForPagination.push(i)
+        }
+
+        console.log(`this.props.totalUsersCount= ${this.props.totalUsersCount}`)
+        console.log(`this.props.pageSize= ${this.props.pageSize}`)
+        console.log(`pagesForPagination= ${pagesForPagination}`)
+        console.log(`pagesCount= ${pagesCount}`)
         return (
             <div className={style.content}>
+                <div className={style.pagination}>
+                    <span className={style.unselectedPage} onClick={()=>this.props.setCurrentPage(1)}>{'<'}</span>
+                    {pagesForPagination.map( (p, i) => {
+                        return <span key={i} onClick={()=>{ this.onPageChanged(p) }}
+                                     className={this.props.currentPage === p ? style.selectedPage : style.unselectedPage}>{p}</span>
+                    })}
+                    <span className={style.unselectedPage} onClick={()=>this.props.setCurrentPage(pagesCount)}>{'>'}</span>
+                </div>
                 {this.props.users.map(u =>
                     <UserItem key={u.id} avaLink={u.photos.small ? u.photos.small : avaLinkArray[2]}
                               followed={u.followed} userId={u.id} status={u.status} fullName={u.name}/>)
