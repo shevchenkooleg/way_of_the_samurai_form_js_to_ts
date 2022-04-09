@@ -12,12 +12,12 @@ let avaLinkArray = [
 
 let initialState = {
     onlineStatus: [
-        {userId: 1, name: 'Valentina', avaLink: avaLinkArray[1], isOnline: true},
-        {userId: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: true},
-        {userId: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: true},
-        {userId: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
-        {userId: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: true},
-        {userId: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: true}
+        // {userId: 1, name: 'Valentina', avaLink: avaLinkArray[1], isOnline: false},
+        // {userId: 2, name: 'Ilya', avaLink: avaLinkArray[2], isOnline: false},
+        // {userId: 3, name: 'Elena', avaLink: avaLinkArray[3], isOnline: false},
+        // {userId: 4, name: 'Sergey', avaLink: avaLinkArray[4], isOnline: false},
+        // {userId: 5, name: 'Vitaliy', avaLink: avaLinkArray[5], isOnline: false},
+        // {userId: 6, name: 'Alexandr', avaLink: avaLinkArray[6], isOnline: false}
     ]
 }
 

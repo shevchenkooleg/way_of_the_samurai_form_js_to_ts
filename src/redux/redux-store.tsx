@@ -3,7 +3,6 @@ import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
-import {usersFromServerType} from "../components/Users/Users";
 
 type postsType = {
     id: number
@@ -55,6 +54,17 @@ export type usersType = {
     status: string
     location: locationType
 }
+export type usersFromServerType = {
+    followed: boolean
+    id: number
+    name: string
+    uniqueUrlName: string | null
+    photos: {
+        small: string | null
+        large: string | null
+    }
+    status: string | null
+}
 export type usersPageType = {
     users: Array<usersFromServerType>
 }
@@ -78,9 +88,6 @@ export type actionType = {
     userId: number
     users: Array<usersType>
 }
-
-// type RootReducerType = typeof reducers; // (globalstate: AppStateType) => AppStateType
-// export type AppStateType = ReturnType<RootReducerType>
 
 
 let reducers = combineReducers({

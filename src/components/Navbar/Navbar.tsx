@@ -43,12 +43,12 @@ const Navbar = (props: NavbarPropsType) => {
                              className={navData => navData.isActive ? style.active : style.item}>Settings</NavLink>
                 </div>
             </nav>
-            <div className={style.header}>Online Friends</div>
-            <div className={style.onlineFriends}>
+            {/*<div className={style.header}>Online Friends</div>*/}
+            {/*<div className={style.onlineFriends}>*/}
 
-                {onlineFriendsElement}
+            {/*    {onlineFriendsElement}*/}
 
-            </div>
+            {/*</div>*/}
         </div>
 
     )

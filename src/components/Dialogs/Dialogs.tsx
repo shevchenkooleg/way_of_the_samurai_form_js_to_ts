@@ -17,29 +17,29 @@ type DialogsPropsType = {
     changeTextArea: (messageText: string) => void
 
 }
+class Dialogs extends React.Component<DialogsPropsType> {
 
-const Dialogs = (props: DialogsPropsType) => {
-
-    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avaLink={d.avaLink}/>)
-    let messagesElements = props.dialogsPage.messages.map(m => <MessageItem message={m.message} id={m.id}
+    dialogsElements = this.props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avaLink={d.avaLink}/>)
+    messagesElements = this.props.dialogsPage.messages.map(m => <MessageItem message={m.message} id={m.id}
                                                                             userId={m.userId}
                                                                             avatarImage={m.avatarImage}/>)
 
-    return (
+    render = () => {
+        return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                {dialogsElements}
+                {this.dialogsElements}
 
             </div>
             <div className={style.messagesItems}>
-                {messagesElements}
+                {this.messagesElements}
             </div>
             <div className={style.textAreaContainer}>
-                <TextAreaFrame newMessageText={props.dialogsPage.newMessageText}
-                               addNewMessage={props.addNewMessage} changeTextArea={props.changeTextArea}/>
+                <TextAreaFrame newMessageText={this.props.dialogsPage.newMessageText}
+                               addNewMessage={this.props.addNewMessage} changeTextArea={this.props.changeTextArea}/>
             </div>
         </div>
     )
+    }
 }
-
 export default Dialogs;

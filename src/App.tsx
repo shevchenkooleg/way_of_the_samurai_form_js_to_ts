@@ -10,8 +10,7 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from "./components/Users/UsersContainer";
-import {usersType} from "./redux/redux-store";
-import {usersFromServerType} from "./components/Users/Users";
+import { usersFromServerType } from './redux/redux-store';
 
 export type postsType = {
     id: number
