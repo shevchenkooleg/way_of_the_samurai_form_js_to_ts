@@ -9,6 +9,7 @@ type MessagePropsType = {
 }
 
 const MessageItem = (props: MessagePropsType) => {
+
     let a = props.userId
     if (a === 0) {
         return (

@@ -57,35 +57,34 @@ const usersReducer = (state: usersPageType = initialState, action: usersReducerA
     }
 };
 
-type followACType = ReturnType<typeof followAC>
-export const followAC = (userId: number) => {
+type followACType = ReturnType<typeof follow>
+export const follow = (userId: number) => {
     return {type: USERS_PAGE_ACTION_TYPE.FOLLOW, userId: userId} as const
 }
 
-type unfollowACType = ReturnType<typeof unfollowAC>
-export const unfollowAC = (userId: number) => {
+type unfollowACType = ReturnType<typeof unfollow>
+export const unfollow = (userId: number) => {
     return {type: USERS_PAGE_ACTION_TYPE.UNFOLLOW, userId: userId} as const
 }
 
-type setUsersACType = ReturnType<typeof setUsersAC>
-export const setUsersAC = (users: Array<usersFromServerType>) => {
+type setUsersACType = ReturnType<typeof setUsers>
+export const setUsers = (users: Array<usersFromServerType>) => {
     return {type: USERS_PAGE_ACTION_TYPE.SET_USERS, users} as const
 }
 
-type changeCurrentPageACType = ReturnType<typeof changeCurrentPageAC>
-export const changeCurrentPageAC = (currentPage:number) => {
+type changeCurrentPageACType = ReturnType<typeof changeCurrentPage>
+export const changeCurrentPage = (currentPage:number) => {
     return {type: USERS_PAGE_ACTION_TYPE.SET_CURRENT_PAGE, currentPage} as const
 }
 
-type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
-export const setTotalUsersCountAC = (totalUsersCount:number) => {
+type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCount>
+export const setTotalUsersCount = (totalUsersCount:number) => {
     return {type: USERS_PAGE_ACTION_TYPE.SET_TOTAL_USERS_COUNT, totalUsersCount} as const
 }
 
-type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
+export const toggleIsFetching = (isFetching: boolean) => {
     return {type: USERS_PAGE_ACTION_TYPE.TOGGLE_IS_FETCHING, isFetching} as const
 }
-
 
 export default usersReducer;
