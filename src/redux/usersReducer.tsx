@@ -12,7 +12,7 @@ let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 3670
+    currentPage: 1,
 }
 
 export type usersReducerActionType = followACType | unfollowACType | setUsersACType | changeCurrentPageACType | setTotalUsersCountACType
