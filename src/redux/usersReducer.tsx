@@ -5,7 +5,8 @@ export enum USERS_PAGE_ACTION_TYPE {
     UNFOLLOW = 'UNFOLLOW',
     SET_USERS = 'SET_USERS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
-    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+    SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
 }
 
 let initialState = {
@@ -13,9 +14,11 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 }
 
-export type usersReducerActionType = followACType | unfollowACType | setUsersACType | changeCurrentPageACType | setTotalUsersCountACType
+export type usersReducerActionType = followACType | unfollowACType | setUsersACType | changeCurrentPageACType |
+    setTotalUsersCountACType | toggleIsFetchingACType
 
 const usersReducer = (state: usersPageType = initialState, action: usersReducerActionType) => {
 
@@ -47,7 +50,8 @@ const usersReducer = (state: usersPageType = initialState, action: usersReducerA
             return {...state, currentPage:action.currentPage}
         case USERS_PAGE_ACTION_TYPE.SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount:action.totalUsersCount}
-
+        case USERS_PAGE_ACTION_TYPE.TOGGLE_IS_FETCHING:
+            return {...state, isFetching:action.isFetching}
         default:
             return state
     }
@@ -76,6 +80,11 @@ export const changeCurrentPageAC = (currentPage:number) => {
 type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
 export const setTotalUsersCountAC = (totalUsersCount:number) => {
     return {type: USERS_PAGE_ACTION_TYPE.SET_TOTAL_USERS_COUNT, totalUsersCount} as const
+}
+
+type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {type: USERS_PAGE_ACTION_TYPE.TOGGLE_IS_FETCHING, isFetching} as const
 }
 
 

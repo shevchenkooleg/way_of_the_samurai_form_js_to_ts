@@ -19,8 +19,8 @@ type DialogsPropsType = {
 }
 class Dialogs extends React.Component<DialogsPropsType> {
 
-    dialogsElements = this.props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avaLink={d.avaLink}/>)
-    messagesElements = this.props.dialogsPage.messages.map(m => <MessageItem message={m.message} id={m.id}
+    dialogsElements = this.props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avaLink={d.avaLink}/>)
+    messagesElements = this.props.dialogsPage.messages.map(m => <MessageItem key={m.id} message={m.message} id={m.id}
                                                                             userId={m.userId}
                                                                             avatarImage={m.avatarImage}/>)
 

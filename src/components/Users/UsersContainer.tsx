@@ -1,10 +1,19 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {StateType} from "../../App";
-import {changeCurrentPageAC, followAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
+import {
+    changeCurrentPageAC,
+    followAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "../../redux/usersReducer";
 import { usersFromServerType } from "../../redux/redux-store";
 import React from "react";
 import axios from "axios";
+import preloader from "./../../assets/preloader.svg"
+import Preloader from "../common/Preloader/Preloader";
 
 
 type UsersAPIContainerPropsType = {
@@ -12,11 +21,13 @@ type UsersAPIContainerPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<usersFromServerType>) => void
     setCurrentPage: (page:number) => void
     setTotalUsersCount: (totalUsersCount:number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 let avaLinkArray = [
@@ -32,19 +43,21 @@ let avaLinkArray = [
 class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
     componentDidMount = () => {
         if (this.props.users.length === 0) {
+            this.props.toggleIsFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-                console.log(response.data.items)
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.toggleIsFetching(false);
             });
         }
     }
 
     onPageChanged = (newPage: number) => {
         this.props.setCurrentPage(newPage);
+        this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPage}&count=${this.props.pageSize}`).then(response => {
-            console.log(response.data.items)
             this.props.setUsers(response.data.items);
+            this.props.toggleIsFetching(false);
         });
 
     }
@@ -64,14 +77,13 @@ class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
                 pagesForPagination.push(i)
         }
 
-        console.log(`this.props.totalUsersCount= ${this.props.totalUsersCount}`)
-        console.log(`this.props.pageSize= ${this.props.pageSize}`)
-        console.log(`pagesForPagination= ${pagesForPagination}`)
-        console.log(`pagesCount= ${pagesCount}`)
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users currentPage={this.props.currentPage} users={this.props.users} onPageChanged={this.onPageChanged}
+                   pagesForPagination={pagesForPagination} pagesCount={pagesCount} follow={this.props.follow}
+                   unfollow={this.props.unfollow} avaLinkArray={avaLinkArray}/>
+        </>
 
-        return <Users currentPage={this.props.currentPage} users={this.props.users} onPageChanged={this.onPageChanged}
-                       pagesForPagination={pagesForPagination} pagesCount={pagesCount} follow={this.props.follow}
-                       unfollow={this.props.unfollow} avaLinkArray={avaLinkArray}/>
 
     }
 }
@@ -84,6 +96,7 @@ let mapStateToProps = (state: StateType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     }
 }
 
@@ -93,7 +106,8 @@ let mapDispatchToProps = (dispatch: Function) => {
         unfollow: (userID:number) => {dispatch(unfollowAC(userID))},
         setUsers: (users:Array<usersFromServerType>) => {dispatch(setUsersAC(users))},
         setCurrentPage: (pageNumber:number) => {dispatch(changeCurrentPageAC(pageNumber))},
-        setTotalUsersCount: (totalUsersCount:number) => {dispatch(setTotalUsersCountAC(totalUsersCount))}
+        setTotalUsersCount: (totalUsersCount:number) => {dispatch(setTotalUsersCountAC(totalUsersCount))},
+        toggleIsFetching: (isFetching: boolean) => {dispatch(toggleIsFetchingAC(isFetching))},
         }
     }
 
