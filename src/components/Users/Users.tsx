@@ -3,6 +3,7 @@ import UserItem from './UserItem/UserItem';
 import style from './Users.module.css'
 import {usersFromServerType} from "../../redux/redux-store";
 
+
 type UsersPropsType = {
     users: Array<usersFromServerType>
     pagesForPagination: number[]

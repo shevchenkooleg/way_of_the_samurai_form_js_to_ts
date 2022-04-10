@@ -52,7 +52,7 @@ export type StateType = {
     usersPage: usersPageType
 }
 
-
+//This app works with functional components
 function App() {
 
     return (
