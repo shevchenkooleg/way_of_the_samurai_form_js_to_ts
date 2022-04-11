@@ -28,7 +28,8 @@ const Users = (props: UsersPropsType) => {
             </div>
             {props.users.map(u =>
                 <UserItem key={u.id} avaLink={u.photos.small ? u.photos.small : props.avaLinkArray[2]}
-                          followed={u.followed} userId={u.id} status={u.status} fullName={u.name}/>)
+                          followed={u.followed} userId={u.id} status={u.status} fullName={u.name} follow={props.follow}
+                unfollow={props.unfollow}/>)
             }
         </div>
     );

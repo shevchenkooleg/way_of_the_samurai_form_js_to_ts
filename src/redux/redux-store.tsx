@@ -3,6 +3,7 @@ import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
+import {ProfileType} from "../App";
 
 type postsType = {
     id: number
@@ -33,8 +34,10 @@ export type locationType = {
     city: string
 }
 export type profilePageType = {
+    profile: ProfileType | null
     posts: Array<postsType>
     newPostText: string
+    isFetching: boolean
 }
 export type dialogsPageType = {
     dialogs: Array<dialogsType>
@@ -74,6 +77,7 @@ export type usersPageType = {
 }
 export type stateType = {
     profilePage: {
+        profile: ProfileType
         posts: Array<postsType>
         newPostText: string
     },

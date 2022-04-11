@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
@@ -10,7 +9,8 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from "./components/Users/UsersContainer";
-import {usersFromServerType, usersPageType} from './redux/redux-store';
+import {usersPageType} from './redux/redux-store';
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export type postsType = {
     id: number
@@ -36,10 +36,33 @@ export type onlineStatusType = {
     avaLink: string
     isOnline: boolean
 }
+export type ProfileType = {
+    aboutMe: string | null,
+    contacts: {
+        facebook: string | null,
+        website: string | null,
+        vk: string | null,
+        twitter: string | null,
+        instagram: string | null,
+        youtube: string | null,
+        github: string | null,
+        mainLink: string | null
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string | null,
+    fullName: string | null,
+    userId: number,
+    photos: {
+        small: string,
+        large: string,
+    },
+}
 export type StateType = {
     profilePage: {
+        profile: ProfileType
         posts: Array<postsType>
         newPostText: string
+        isFetching: boolean
     },
     dialogsPage: {
         dialogs: Array<dialogsType>
@@ -52,7 +75,7 @@ export type StateType = {
     usersPage: usersPageType
 }
 
-//This app works with functional components
+//This app works with class component
 function App() {
 
     return (
@@ -62,8 +85,8 @@ function App() {
                 <NavbarContainer />
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile'
-                               element={<Profile />}/>
+                        <Route path='/profile/:userId'
+                               element={<ProfileContainer />}/>
                         <Route path='/dialogs/*'
                                element={<DialogsContainer />}/>
                         <Route path='/news' element={<News/>}/>

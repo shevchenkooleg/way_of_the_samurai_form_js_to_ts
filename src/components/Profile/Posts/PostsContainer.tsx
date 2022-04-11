@@ -1,8 +1,9 @@
 import React from "react";
 import Posts from "./Posts";
-import {addPostActionCreator, newPostTextAreaUpdateActionCreator} from "../../../redux/profileReducer";
 import {connect} from "react-redux";
 import {StateType} from "../../../App";
+
+
 
 
 
@@ -14,8 +15,8 @@ let mapStateToProps = (state: StateType) => {
 
 let mapDispatchToProps = (dispatch: Function) => {
     return {
-        addNewPost: () => {dispatch(addPostActionCreator());},
-        changeTextArea: (text: string) => {dispatch(newPostTextAreaUpdateActionCreator(text));}
+        // addNewPost: () => {dispatch(addPostActionCreator());},
+        // changeTextArea: (text: string) => {dispatch(newPostTextAreaUpdateActionCreator(text));}
     }
 }
 
