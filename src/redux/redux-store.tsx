@@ -4,6 +4,7 @@ import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import {ProfileType} from "../App";
+import authReducer from "./auth-reducer";
 
 type postsType = {
     id: number
@@ -102,7 +103,9 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogReducer,
     sideBar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
+
 })
 
 type store = any
