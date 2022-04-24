@@ -1,12 +1,9 @@
+import {AuthDataType} from "./redux-store"
+import {Dispatch} from "redux";
+import {authAPI, profileAPI} from "../api/api";
+
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
-
-export type AuthDataType = {
-    id: string | null,
-    email: string | null,
-    login: string | null,
-    isAuth: boolean
-}
 
 let initialState = {
     id: null,
@@ -14,8 +11,11 @@ let initialState = {
     login: null,
     isAuth: false
 }
-type authReducer = setAuthDataACType
-const authReducer = (state: AuthDataType = initialState, action: authReducer) => {
+
+type AuthReducer = setAuthDataACType
+
+
+const authReducer = (state: AuthDataType = initialState, action: AuthReducer) => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return {
@@ -29,8 +29,26 @@ const authReducer = (state: AuthDataType = initialState, action: authReducer) =>
 
 }
 type setAuthDataACType = ReturnType<typeof setAuthData>
-export const setAuthData = (id:string, email:string, login:string) => {
+export const setAuthData = (id: string, email: string, login: string) => {
     return {type: SET_AUTH_DATA, data: {id, email, login}} as const
+}
+
+
+//THUNK
+
+export const autorize = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.authMe().then(response => {
+            if (response.resultCode === 0) {
+                let {id, login, email} = response.data
+                dispatch(setAuthData(id, email, login));
+                profileAPI.getProfile(id).then(response => {
+                    // console.log('about me..')
+                    // console.log(response.data)
+                })
+            }
+        });
+    }
 }
 
 export default authReducer

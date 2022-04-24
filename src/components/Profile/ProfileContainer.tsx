@@ -6,6 +6,7 @@ import {postsType, ProfileType, StateType} from "../../App";
 import {addPost, newPostTextAreaUpdate, setUserProfile, toggleIsFetching} from "../../redux/profileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
+import {profileAPI} from "../../api/api";
 
 type RouterType = {
     location: any
@@ -31,19 +32,14 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount = () => {
         this.props.toggleIsFetching(true)
-        console.log(this.props.router.params)
+        // console.log(this.props.router.params)
         let userId = this.props.router.params.userId
-        debugger
         if (!userId) {
             userId = '2'
         }
-        console.log(userId)
-        debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+        profileAPI.getProfile(userId).then(response => {
             this.props.setUserProfile(response.data)
             this.props.toggleIsFetching(false)
-            // this.props.setTotalUsersCount(response.data.totalCount);
-            // this.props.toggleIsFetching(false);
         });
     }
 

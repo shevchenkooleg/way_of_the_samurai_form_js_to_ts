@@ -2,16 +2,11 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {StateType} from "../../App";
 import {
-    changeCurrentPage,
-    follow,
-    setTotalUsersCount,
-    setUsers,
-    toggleIsFetching,
-    unfollow
+    follow, getUsers,
+    unfollow,
 } from "../../redux/usersReducer";
-import { usersFromServerType } from "../../redux/redux-store";
+import {usersFromServerType} from "../../redux/redux-store";
 import React from "react";
-import axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
 
 
@@ -21,12 +16,10 @@ type UsersAPIContainerPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<usersFromServerType>) => void
-    changeCurrentPage: (page:number) => void
-    setTotalUsersCount: (totalUsersCount:number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    followingInProgress: Array<number>
+    getUsers: any
+    follow: any
+    unfollow: any
 }
 
 let avaLinkArray = [
@@ -42,37 +35,26 @@ let avaLinkArray = [
 class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
     componentDidMount = () => {
         if (this.props.users.length === 0) {
-            this.props.toggleIsFetching(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-                this.props.toggleIsFetching(false);
-            });
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
     }
 
     onPageChanged = (newPage: number) => {
-        this.props.changeCurrentPage(newPage);
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.toggleIsFetching(false);
-        });
-
+        this.props.getUsers(newPage, this.props.pageSize)
     }
     render = () => {
 
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
 
         let pagesForPagination = [];
-        if (this.props.currentPage>10 && pagesCount - this.props.currentPage > 10) {
-            for (let i = this.props.currentPage - 10; i<=this.props.currentPage + 10; i++)
+        if (this.props.currentPage > 10 && pagesCount - this.props.currentPage > 10) {
+            for (let i = this.props.currentPage - 10; i <= this.props.currentPage + 10; i++)
                 pagesForPagination.push(i)
-        } else if (0 < this.props.currentPage && this.props.currentPage<=10) {
-            for (let i = 1; i<=20; i++)
+        } else if (0 < this.props.currentPage && this.props.currentPage <= 10) {
+            for (let i = 1; i <= 20; i++)
                 pagesForPagination.push(i)
-        } else if (pagesCount - this.props.currentPage <= 10 ) {
-            for (let i = pagesCount - 20; i<=pagesCount; i++)
+        } else if (pagesCount - this.props.currentPage <= 10) {
+            for (let i = pagesCount - 20; i <= pagesCount; i++)
                 pagesForPagination.push(i)
         }
 
@@ -80,7 +62,8 @@ class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
             {this.props.isFetching ? <Preloader/> : null}
             <Users currentPage={this.props.currentPage} users={this.props.users} onPageChanged={this.onPageChanged}
                    pagesForPagination={pagesForPagination} pagesCount={pagesCount} follow={this.props.follow}
-                   unfollow={this.props.unfollow} avaLinkArray={avaLinkArray}/>
+                   unfollow={this.props.unfollow} avaLinkArray={avaLinkArray} followingInProgress={this.props.followingInProgress}
+            />
         </>
 
 
@@ -94,12 +77,17 @@ let mapStateToProps = (state: StateType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
 
+// let UsersContainer = connect(mapStateToProps, {
+//     follow, unfollow, setUsers, changeCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowing
+// })(UsersAPIContainer)
+
+
 let UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, changeCurrentPage, setTotalUsersCount, toggleIsFetching
-})(UsersAPIContainer)
+    getUsers, follow, unfollow})(UsersAPIContainer)
 
 export default UsersContainer

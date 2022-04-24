@@ -1,10 +1,11 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import {ProfileType} from "../App";
 import authReducer from "./auth-reducer";
+import thunkMiddleware from 'redux-thunk'
 
 type postsType = {
     id: number
@@ -48,6 +49,12 @@ export type dialogsPageType = {
 export type sideBarType = {
     onlineStatus: Array<onlineStatusType>
 }
+export type AuthDataType = {
+    id: string | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
+}
 export type usersType = {
     id: number
     userId: number
@@ -75,6 +82,7 @@ export type usersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 export type stateType = {
     profilePage: {
@@ -108,9 +116,9 @@ let reducers = combineReducers({
 
 })
 
-type store = any
+type store = typeof store
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 declare var window: any
 window.store = store;
