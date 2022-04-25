@@ -12,8 +12,8 @@ type UsersPropsType = {
     pagesCount: number
     followingInProgress: Array<number>
     avaLinkArray: string[]
-    follow: (userId: number) => (dispatch: Dispatch) => void
-    unfollow: (userId: number) => (dispatch: Dispatch) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     onPageChanged: (newPage: number) => void
 }
 

@@ -107,7 +107,7 @@ export type actionType = {
 }
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogReducer,
     sideBar: sidebarReducer,
@@ -116,9 +116,10 @@ let reducers = combineReducers({
 
 })
 
-type store = typeof store
+type AppStoreType = typeof store
+export type AppStateType = ReturnType<typeof rootReducer>
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 declare var window: any
 window.store = store;

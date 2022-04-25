@@ -1,5 +1,7 @@
-import {profilePageType} from "./redux-store";
+import {AppStateType, profilePageType} from "./redux-store";
 import {ProfileType} from "../App";
+import {userAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk/es/types";
 
 export enum PROFILE_PAGE_ACTION_TYPE {
     ADD_POST = 'ADD-POST',
@@ -9,27 +11,6 @@ export enum PROFILE_PAGE_ACTION_TYPE {
 }
 
 let initialState = {
-    // profile: {
-    //     aboutMe: 'я круто чувак 1001%',
-    //     contacts: {
-    //         facebook: "facebook.com",
-    //         website: null,
-    //         vk: "vk.com/dimych",
-    //         twitter: "https://twitter.com/@sdf",
-    //         instagram: "instagra.com/sds",
-    //         youtube: null,
-    //         github: "github.com",
-    //         mainLink: null
-    //     },
-    //     lookingForAJob: true,
-    //     lookingForAJobDescription: 'не ищу, а дурачусь',
-    //     fullName: 'samurai dimych',
-    //     userId: 2,
-    //     photos: {
-    //         small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-    //         large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0",
-    //     },
-    // },
     profile: null,
     posts: [
         {id: 2, userId: 0, post: 'Hi, how are you doing?', likeCount: 15},
@@ -40,9 +21,9 @@ let initialState = {
 }
 
 
-export type profileReducerActionType = addPostACType | newPostTextAreaUpdateACType | setUserProfileACType | toggleIsFetchingACType
+export type ProfileReducerActionType = AddPostACType | NewPostTextAreaUpdateACType | SetUserProfileACType | ToggleIsFetchingACType
 
-const profileReducer = (state: profilePageType = initialState, action: profileReducerActionType) => {
+const profileReducer = (state: profilePageType = initialState, action: ProfileReducerActionType) => {
 
     let stateCopy
 
@@ -77,12 +58,12 @@ const profileReducer = (state: profilePageType = initialState, action: profileRe
     }
 };
 
-type addPostACType = ReturnType<typeof addPost>
+type AddPostACType = ReturnType<typeof addPost>
 export const addPost = () => {
     return {type: PROFILE_PAGE_ACTION_TYPE.ADD_POST} as const
 }
 
-type newPostTextAreaUpdateACType = ReturnType<typeof newPostTextAreaUpdate>
+type NewPostTextAreaUpdateACType = ReturnType<typeof newPostTextAreaUpdate>
 export const newPostTextAreaUpdate = (text: string) => {
     return {
         type: PROFILE_PAGE_ACTION_TYPE.NEW_POST_TEXT_AREA_UPDATE,
@@ -90,7 +71,7 @@ export const newPostTextAreaUpdate = (text: string) => {
     } as const
 }
 
-type setUserProfileACType = ReturnType<typeof setUserProfile>
+type SetUserProfileACType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: ProfileType) => {
     return {
         type: PROFILE_PAGE_ACTION_TYPE.SET_USER_PROFILE,
@@ -98,12 +79,27 @@ export const setUserProfile = (profile: ProfileType) => {
     } as const
 }
 
-type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
+type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: PROFILE_PAGE_ACTION_TYPE.TOGGLE_IS_FETCHING,
         isFetching
     } as const
+}
+
+
+
+//THUNK
+
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileReducerActionType>
+export const getUserProfile = (userId: number): ThunkType => {
+    return async (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        userAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+            dispatch(toggleIsFetching(false));
+        });
+    }
 }
 
 export default profileReducer;

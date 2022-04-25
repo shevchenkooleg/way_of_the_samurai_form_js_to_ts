@@ -1,6 +1,6 @@
-import {AuthDataType} from "./redux-store"
-import {Dispatch} from "redux";
-import {authAPI, profileAPI} from "../api/api";
+import {AppStateType, AuthDataType} from "./redux-store"
+import {authAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk/es/types";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
@@ -12,10 +12,10 @@ let initialState = {
     isAuth: false
 }
 
-type AuthReducer = setAuthDataACType
+type AuthReducerType = setAuthDataACType
 
 
-const authReducer = (state: AuthDataType = initialState, action: AuthReducer) => {
+const authReducer = (state: AuthDataType = initialState, action: AuthReducerType) => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return {
@@ -36,16 +36,18 @@ export const setAuthData = (id: string, email: string, login: string) => {
 
 //THUNK
 
-export const autorize = () => {
-    return (dispatch: Dispatch) => {
-        authAPI.authMe().then(response => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, AuthReducerType>
+
+export const getAuthData = ():ThunkType => {
+    return async (dispatch) => {
+        authAPI.me().then(response => {
             if (response.resultCode === 0) {
                 let {id, login, email} = response.data
                 dispatch(setAuthData(id, email, login));
-                profileAPI.getProfile(id).then(response => {
-                    // console.log('about me..')
-                    // console.log(response.data)
-                })
+                // profileAPI.getProfile(id).then(response => {
+                //     console.log('about me..')
+                //     console.log(response.data)
+                // })
             }
         });
     }

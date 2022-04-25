@@ -1,12 +1,14 @@
 import React, { JSXElementConstructor } from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import { connect } from "react-redux";
 import {postsType, ProfileType, StateType} from "../../App";
-import {addPost, newPostTextAreaUpdate, setUserProfile, toggleIsFetching} from "../../redux/profileReducer";
+import {
+    addPost,
+    getUserProfile,
+    newPostTextAreaUpdate,
+} from "../../redux/profileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
-import {profileAPI} from "../../api/api";
 
 type RouterType = {
     location: any
@@ -26,21 +28,17 @@ type ProfileContainerPropsType = {
     newPostTextAreaUpdate: (text: string) => void
     setUserProfile: (profile: ProfileType) => void
     toggleIsFetching: (isFetching: boolean) => void
+    getUserProfile: (userId: number) => void
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount = () => {
-        this.props.toggleIsFetching(true)
-        // console.log(this.props.router.params)
         let userId = this.props.router.params.userId
         if (!userId) {
-            userId = '2'
+            userId = '23136'
         }
-        profileAPI.getProfile(userId).then(response => {
-            this.props.setUserProfile(response.data)
-            this.props.toggleIsFetching(false)
-        });
+        this.props.getUserProfile(Number(userId))
     }
 
 
@@ -80,4 +78,4 @@ export const  withRouter=(Component:JSXElementConstructor<any>):JSXElementConstr
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps,
-    {addPost, newPostTextAreaUpdate, setUserProfile, toggleIsFetching}) (WithUrlDataContainerComponent);
+    {addPost, newPostTextAreaUpdate, getUserProfile}) (WithUrlDataContainerComponent);

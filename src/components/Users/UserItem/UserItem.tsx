@@ -10,8 +10,8 @@ type UserItemPropsType = {
     status: string | null,
     fullName: string
     followingInProgress: Array<number>
-    follow: (userId: number) => (dispatch: Dispatch) => void
-    unfollow: (userId: number) => (dispatch: Dispatch) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 class UserItem extends React.Component<UserItemPropsType> {

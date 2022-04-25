@@ -17,9 +17,9 @@ type UsersAPIContainerPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
-    getUsers: any
-    follow: any
-    unfollow: any
+    getUsers: (currentPage: number, pageSize: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 let avaLinkArray = [
@@ -87,7 +87,6 @@ let mapStateToProps = (state: StateType) => {
 // })(UsersAPIContainer)
 
 
-let UsersContainer = connect(mapStateToProps, {
-    getUsers, follow, unfollow})(UsersAPIContainer)
+let UsersContainer = connect(mapStateToProps, {getUsers, follow, unfollow})(UsersAPIContainer)
 
 export default UsersContainer
