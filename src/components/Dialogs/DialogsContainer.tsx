@@ -7,7 +7,8 @@ import {StateType} from "../../App";
 
 let mapStateToProps = (state: StateType) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 

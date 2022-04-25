@@ -11,6 +11,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import {usersPageType} from './redux/redux-store';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from './components/Login/Login';
 
 export type postsType = {
     id: number
@@ -105,6 +106,7 @@ function App() {
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                         <Route path='/users' element={<UsersContainer/>}/>
+                        <Route path='/login' element={<Login/>}/>
                     </Routes>
                 </div>
 

@@ -6,17 +6,20 @@ import Description from "./Description/Description";
 import Posts from "./Posts/Posts";
 import {postsType, ProfileType} from "../../App";
 import Preloader from "../common/Preloader/Preloader";
+import { Navigate } from "react-router-dom";
 
 type ProfilePropsType = {
     profile: ProfileType
     posts: Array<postsType>
     newPostText: string
+    isAuth: boolean
     addPost: () => void
     newPostTextAreaUpdate: (text: string) => void
-    setUserProfile: (profile: ProfileType) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
+
+    if (!props.isAuth) {return <Navigate to={'/login'}/>};
 
     if (!props.profile) {
         return <Preloader/>

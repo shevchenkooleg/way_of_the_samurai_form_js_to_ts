@@ -25,9 +25,8 @@ type ProfileContainerPropsType = {
     newPostText: string
     addPost: () => void
     isFetching: boolean
+    isAuth: boolean
     newPostTextAreaUpdate: (text: string) => void
-    setUserProfile: (profile: ProfileType) => void
-    toggleIsFetching: (isFetching: boolean) => void
     getUserProfile: (userId: number) => void
 }
 
@@ -57,6 +56,7 @@ let mapStateToProps = (state: StateType) => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     isFetching: state.profilePage.isFetching,
+    isAuth: state.auth.isAuth,
 });
 
 
