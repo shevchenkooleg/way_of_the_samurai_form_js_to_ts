@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getAuthData, setAuthData} from "../../redux/auth-reducer";
 import {StateType} from "../../App";
 import { AuthDataType } from "../../redux/redux-store";
+import {log} from "util";
 
 type HeaderAPIContainerPropsType = AuthDataType & {
     setAuthData: (id: string, email: string, login: string) => void
@@ -14,11 +15,11 @@ class HeaderAPIContainer extends React.Component<HeaderAPIContainerPropsType> {
 
     componentDidMount = () => {
         this.props.getAuthData()
-        // getAuthorize()
     }
 
 
     render = () => {
+        {console.log('Header')}
         return <Header {...this.props}/>
     }
 }

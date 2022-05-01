@@ -42,6 +42,7 @@ export const getAuthData = ():ThunkType => {
     return async (dispatch) => {
         authAPI.me().then(response => {
             if (response.resultCode === 0) {
+                console.log('getAuthData')
                 let {id, login, email} = response.data
                 dispatch(setAuthData(id, email, login));
                 // profileAPI.getProfile(id).then(response => {

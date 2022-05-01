@@ -9,6 +9,8 @@ import {
 } from "../../redux/profileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type RouterType = {
     location: any
@@ -25,7 +27,6 @@ type ProfileContainerPropsType = {
     newPostText: string
     addPost: () => void
     isFetching: boolean
-    isAuth: boolean
     newPostTextAreaUpdate: (text: string) => void
     getUserProfile: (userId: number) => void
 }
@@ -56,7 +57,6 @@ let mapStateToProps = (state: StateType) => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     isFetching: state.profilePage.isFetching,
-    isAuth: state.auth.isAuth,
 });
 
 
@@ -75,7 +75,15 @@ export const  withRouter=(Component:JSXElementConstructor<any>):JSXElementConstr
 
     return ComponentWithRouterProp;
 }
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,
-    {addPost, newPostTextAreaUpdate, getUserProfile}) (WithUrlDataContainerComponent);
+// let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+//
+// export default withAuthRedirect(connect(mapStateToProps,
+//     {addPost, newPostTextAreaUpdate, getUserProfile}) (WithUrlDataContainerComponent));
+
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {addPost, newPostTextAreaUpdate, getUserProfile}),
+    withRouter,
+    // withAuthRedirect
+)(ProfileContainer)

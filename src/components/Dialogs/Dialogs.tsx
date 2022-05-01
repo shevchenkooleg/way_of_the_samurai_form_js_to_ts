@@ -4,7 +4,6 @@ import MessageItem from "./Message/MessageItem";
 import DialogItem from "./Dialog/DialogItem";
 import {dialogsType, messagesType} from "../../App";
 import TextAreaFrame from "./TextAreaFrame/TextAreaFrame";
-import { Navigate } from 'react-router-dom';
 
 
 
@@ -14,7 +13,6 @@ type DialogsPropsType = {
         dialogs: Array<dialogsType>
         newMessageText: string
     }
-    isAuth: boolean
     addMessage: () => void
     newMessageTextAreaUpdate: (messageText: string) => void
 
@@ -22,8 +20,6 @@ type DialogsPropsType = {
 class Dialogs extends React.Component<DialogsPropsType> {
 
     render = () => {
-
-        if (!this.props.isAuth) return <Navigate to={'/login'}></Navigate>
 
         const dialogsElements = this.props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avaLink={d.avaLink}/>)
         const messagesElements = this.props.dialogsPage.messages.map(m => {
