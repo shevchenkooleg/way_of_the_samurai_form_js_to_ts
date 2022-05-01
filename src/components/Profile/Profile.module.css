@@ -3,7 +3,8 @@
     background-color: #CECECE;
 
     grid-template-areas:
-    'wallpaper wallpaper'
+    /*'wallpaper wallpaper'*/
+    'status status'
     'avatar description'
     /*'newPosts newPosts'*/
     'posts posts';

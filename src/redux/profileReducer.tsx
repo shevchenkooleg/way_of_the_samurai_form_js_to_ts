@@ -1,6 +1,6 @@
 import {AppStateType, profilePageType} from "./redux-store";
 import {ProfileType} from "../App";
-import {userAPI} from "../api/api";
+import {profileAPI, userAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk/es/types";
 
 export enum PROFILE_PAGE_ACTION_TYPE {
@@ -8,6 +8,7 @@ export enum PROFILE_PAGE_ACTION_TYPE {
     NEW_POST_TEXT_AREA_UPDATE = 'NEW-POST-TEXT-AREA-UPDATE',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
+    SET_PROFILE_STATUS = 'SET_PROFILE_STATUS',
 }
 
 let initialState = {
@@ -17,11 +18,13 @@ let initialState = {
         {id: 1, userId: 0, post: 'This is my first post', likeCount: 20}
     ],
     newPostText: '',
+    profileStatus: '',
     isFetching: false,
 }
 
 
-export type ProfileReducerActionType = AddPostACType | NewPostTextAreaUpdateACType | SetUserProfileACType | ToggleIsFetchingACType
+export type ProfileReducerActionType = AddPostACType | NewPostTextAreaUpdateACType |
+    SetUserProfileACType | ToggleIsFetchingACType | SetProfileStatusACType
 
 const profileReducer = (state: profilePageType = initialState, action: ProfileReducerActionType) => {
 
@@ -52,6 +55,9 @@ const profileReducer = (state: profilePageType = initialState, action: ProfileRe
         }
         case PROFILE_PAGE_ACTION_TYPE.TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
+        }
+        case PROFILE_PAGE_ACTION_TYPE.SET_PROFILE_STATUS: {
+            return {...state, profileStatus: action.profileStatus}
         }
         default:
             return state
@@ -87,6 +93,14 @@ export const toggleIsFetching = (isFetching: boolean) => {
     } as const
 }
 
+type SetProfileStatusACType = ReturnType<typeof setProfileStatus>
+export const setProfileStatus = (profileStatus: string) => {
+    return {
+        type:PROFILE_PAGE_ACTION_TYPE.SET_PROFILE_STATUS,
+        profileStatus
+    } as const
+}
+
 
 
 //THUNK
@@ -95,10 +109,36 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileReduce
 export const getUserProfile = (userId: number): ThunkType => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true))
+
         userAPI.getProfile(userId).then(response => {
+
             dispatch(setUserProfile(response.data));
             dispatch(toggleIsFetching(false));
         });
+    }
+}
+
+export const getUserStatus = (userId: number):ThunkType  => {
+    return async (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        profileAPI.getStatus(userId).then(response => {
+            if (response.data) {
+                dispatch(setProfileStatus(response.data))
+            } else {
+                dispatch(setProfileStatus('Null'))
+                dispatch(toggleIsFetching(false))
+            }
+        })
+    }
+}
+
+export const updateStatus = (newStatus: string): ThunkType => {
+    return async (dispatch) => {
+        profileAPI.updateStatus(newStatus).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setProfileStatus(newStatus))
+            }
+        })
     }
 }
 

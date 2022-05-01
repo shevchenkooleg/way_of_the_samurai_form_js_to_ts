@@ -63,6 +63,7 @@ export type StateType = {
         profile: ProfileType
         posts: Array<postsType>
         newPostText: string
+        profileStatus: string
         isFetching: boolean
     },
     dialogsPage: {

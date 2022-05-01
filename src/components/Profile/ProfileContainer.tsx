@@ -5,7 +5,8 @@ import {postsType, ProfileType, StateType} from "../../App";
 import {
     addPost,
     getUserProfile,
-    newPostTextAreaUpdate,
+    getUserStatus,
+    newPostTextAreaUpdate, updateStatus,
 } from "../../redux/profileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
@@ -27,8 +28,11 @@ type ProfileContainerPropsType = {
     newPostText: string
     addPost: () => void
     isFetching: boolean
+    profileStatus: string
     newPostTextAreaUpdate: (text: string) => void
     getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateStatus: (newStatus: string) => void
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -39,6 +43,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
             userId = '23136'
         }
         this.props.getUserProfile(Number(userId))
+        this.props.getUserStatus(Number(userId))
     }
 
 
@@ -57,6 +62,7 @@ let mapStateToProps = (state: StateType) => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     isFetching: state.profilePage.isFetching,
+    profileStatus: state.profilePage.profileStatus,
 });
 
 
@@ -83,7 +89,7 @@ export const  withRouter=(Component:JSXElementConstructor<any>):JSXElementConstr
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {addPost, newPostTextAreaUpdate, getUserProfile}),
+    connect(mapStateToProps, {addPost, newPostTextAreaUpdate, getUserProfile, getUserStatus, updateStatus}),
     withRouter,
     // withAuthRedirect
 )(ProfileContainer)
