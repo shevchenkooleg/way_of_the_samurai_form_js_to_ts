@@ -1,6 +1,8 @@
 import {AppStateType, AuthDataType} from "./redux-store"
 import {authAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk/es/types";
+import {Navigate} from "react-router-dom";
+import React from "react";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
@@ -38,7 +40,7 @@ export const setAuthData = (id: string, email: string, login: string) => {
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, AuthReducerType>
 
-export const getAuthData = ():ThunkType => {
+export const getAuthData = (): ThunkType => {
     return async (dispatch) => {
         authAPI.me().then(response => {
             if (response.resultCode === 0) {
@@ -53,23 +55,30 @@ export const getAuthData = ():ThunkType => {
     }
 }
 
-export const makeLogIn = (email: string, password: string, rememberMe: boolean):ThunkType => {
+export const makeLogIn = (email: string, password: string, rememberMe: boolean): ThunkType => {
     return async (dispatch) => {
-        authAPI.logIn(email, password, rememberMe).then(response => {
-            console.log(response)
-            window.location.reload()
+        authAPI.logIn(email, password, rememberMe)
+            .then(response => {
+                if (response.data.resultCode === 0) {
 
-
-        })
+                    window.location.reload()
+                } else {
+                    console.log(response.data.messages)
+                }
+            })
     }
 }
 
-export const makeLogOut = ():ThunkType => {
+export const makeLogOut = (): ThunkType => {
     return async (dispatch) => {
-        authAPI.logOut().then(response => {
-            console.log(response)
-            window.location.reload()
-        })
+        authAPI.logOut()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    window.location.reload()
+                } else {
+                    console.log(response.data.messages)
+                }
+            })
     }
 }
 

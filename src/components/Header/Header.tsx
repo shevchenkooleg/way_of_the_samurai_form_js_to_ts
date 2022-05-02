@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { AuthDataType } from "../../redux/redux-store";
 import style from "./Header.module.css";
-import {makeLogOut} from "../../redux/auth-reducer";
 
 type HeaderPropsType = AuthDataType & {
     setAuthData: (id:string, email:string, login:string) => void
