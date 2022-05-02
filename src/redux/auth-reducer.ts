@@ -53,4 +53,25 @@ export const getAuthData = ():ThunkType => {
     }
 }
 
+export const makeLogIn = (email: string, password: string, rememberMe: boolean):ThunkType => {
+    return async (dispatch) => {
+        authAPI.logIn(email, password, rememberMe).then(response => {
+            console.log(response)
+            window.location.reload()
+
+
+        })
+    }
+}
+
+export const makeLogOut = ():ThunkType => {
+    return async (dispatch) => {
+        authAPI.logOut().then(response => {
+            console.log(response)
+            window.location.reload()
+        })
+    }
+}
+
+
 export default authReducer

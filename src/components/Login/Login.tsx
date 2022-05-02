@@ -29,11 +29,16 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
+type LoginPropsType = {
+    makeLogIn: (email: string, password: string, rememberMe: boolean) => void
+    makeLogOut: () => void
+}
 
-const Login = () => {
+const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
         console.log(formData);
+        props.makeLogIn(formData.login, formData.password, formData.rememberMe)
     }
 
 
