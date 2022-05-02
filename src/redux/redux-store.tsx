@@ -5,7 +5,8 @@ import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import {ProfileType} from "../App";
 import authReducer from "./auth-reducer";
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 type postsType = {
     id: number
@@ -112,8 +113,8 @@ let rootReducer = combineReducers({
     dialogsPage: dialogReducer,
     sideBar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
-
+    auth: authReducer,
+    form: formReducer,
 })
 
 type AppStoreType = typeof store

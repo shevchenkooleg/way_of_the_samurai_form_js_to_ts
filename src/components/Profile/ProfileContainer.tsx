@@ -91,5 +91,5 @@ export const  withRouter=(Component:JSXElementConstructor<any>):JSXElementConstr
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {addPost, newPostTextAreaUpdate, getUserProfile, getUserStatus, updateStatus}),
     withRouter,
-    // withAuthRedirect
+    withAuthRedirect
 )(ProfileContainer)
