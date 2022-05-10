@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import {StateType} from "../../App";
 import {compose} from "redux";
 import Login from "./Login";
-import {makeLogIn, makeLogOut} from "../../redux/auth-reducer";
+import {makeLogIn} from "../../redux/auth-reducer";
+import LoginFormik from "./LoginFormik";
 
 type LoginContainerPropsType = {
     makeLogIn: (email: string, password: string, rememberMe: boolean) => void
-    makeLogOut: () => void
 }
 
 class LoginContainer extends React.Component<LoginContainerPropsType> {
@@ -15,11 +15,9 @@ class LoginContainer extends React.Component<LoginContainerPropsType> {
 
     render = () => {
 
-        console.log('login container')
-
         return (
         <div>
-            <Login {...this.props}/>
+            <LoginFormik {...this.props}/>
         </div>
         )
     }
@@ -34,5 +32,5 @@ let mapStateToProps = (state: StateType) => ({
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {makeLogIn, makeLogOut})
+    connect(mapStateToProps, {makeLogIn})
 )(LoginContainer)

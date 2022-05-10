@@ -11,10 +11,8 @@ type DialogsPropsType = {
     dialogsPage: {
         messages: Array<messagesType>
         dialogs: Array<dialogsType>
-        newMessageText: string
     }
     addMessage: () => void
-    newMessageTextAreaUpdate: (messageText: string) => void
 
 }
 class Dialogs extends React.Component<DialogsPropsType> {
@@ -35,8 +33,7 @@ class Dialogs extends React.Component<DialogsPropsType> {
                 {messagesElements}
             </div>
             <div className={style.textAreaContainer}>
-                <TextAreaFrame newMessageText={this.props.dialogsPage.newMessageText}
-                               addNewMessage={this.props.addMessage} changeTextArea={this.props.newMessageTextAreaUpdate}/>
+                <TextAreaFrame addNewMessage={this.props.addMessage}/>
             </div>
         </div>
     )

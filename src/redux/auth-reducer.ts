@@ -59,8 +59,8 @@ export const makeLogIn = (email: string, password: string, rememberMe: boolean):
     return async (dispatch) => {
         authAPI.logIn(email, password, rememberMe)
             .then(response => {
+                console.log(response)
                 if (response.data.resultCode === 0) {
-
                     window.location.reload()
                 } else {
                     console.log(response.data.messages)

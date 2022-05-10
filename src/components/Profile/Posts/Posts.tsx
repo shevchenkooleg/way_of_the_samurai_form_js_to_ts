@@ -3,13 +3,12 @@ import style from "./Posts.module.css";
 import NewPosts from "./NewPost/NewPosts";
 import Post from "./Post/Post";
 import {postsType} from "../../../App";
+import NewPostsFormik from "./NewPost/NewPostsFormik";
 
 
 type ProfilePropsType = {
     posts: Array<postsType>
-    newPostText: string
     addNewPost: () => void
-    changeTextArea: (text: string) => void
 }
 
 
@@ -19,8 +18,8 @@ const Posts = (props: ProfilePropsType) => {
 
     return (
         <div className={style.posts}>
-            <NewPosts addNewPost={props.addNewPost} changeTextArea={props.changeTextArea}
-                      newPostText={props.newPostText}/>
+            <NewPostsFormik addNewPost={props.addNewPost}
+            />
             {postsElements}
         </div>
     )

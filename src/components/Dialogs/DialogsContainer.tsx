@@ -1,5 +1,5 @@
 import React from 'react';
-import {addMessage, newMessageTextAreaUpdate} from "../../redux/dialogReducer";
+import {addMessage} from "../../redux/dialogReducer";
 import Dialogs from './Dialogs';
 import {connect} from "react-redux";
 import {StateType} from "../../App";
@@ -14,7 +14,7 @@ let mapStateToProps = (state: StateType) => {
 }
 
 const DialogsContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {addMessage, newMessageTextAreaUpdate}),
+    connect(mapStateToProps, {addMessage}),
     withAuthRedirect
 )(Dialogs)
 

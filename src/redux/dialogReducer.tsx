@@ -2,7 +2,6 @@ import {dialogsPageType} from "./redux-store";
 
 export enum DIALOG_PAGE_ACTION_TYPE {
     ADD_MESSAGE = 'ADD-MESSAGE',
-    NEW_MESSAGE_TEXT_AREA_UPDATE = 'NEW-MESSAGE-TEXT-AREA-UPDATE'
 }
 
 let avaLinkArray = [
@@ -73,41 +72,35 @@ let initialState = {
         {id: 6, userId: 0, message: 'Yeah! Let\'s go to the ocean tonight?', avatarImage: avaLinkArray[0]},
         {id: 7, userId: 0, message: ':Smile:', avatarImage: avaLinkArray[0]},
         {id: 8, userId: 1, message: ')))', avatarImage: avaLinkArray[1]},
-    ],
-    newMessageText: ''
+    ]
 }
 
-type DialogReducerActionType = addMessageACType | newMessageTextAreaUpdateACType
+type DialogReducerActionType = addMessageACType
 
 export const dialogReducer = (state: dialogsPageType = initialState, action: DialogReducerActionType) => {
 
 
     switch (action.type) {
-        case DIALOG_PAGE_ACTION_TYPE.ADD_MESSAGE:
+        case DIALOG_PAGE_ACTION_TYPE.ADD_MESSAGE: {
             let newMessage = {
                 id: (state.messages[state.messages.length - 1].id + 1),
                 userId: 0,
-                message: state.newMessageText,
+                message: action.newMessageText,
                 avatarImage: avaLinkArray[0]
             }
             return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
-
-        case DIALOG_PAGE_ACTION_TYPE.NEW_MESSAGE_TEXT_AREA_UPDATE:
-            return {...state, newMessageText: action.newText}
-
+        }
         default:
             return state
     }
 }
 
 type addMessageACType = ReturnType<typeof addMessage>
-export const addMessage = () => {
-    return {type: DIALOG_PAGE_ACTION_TYPE.ADD_MESSAGE} as const
-}
-
-type newMessageTextAreaUpdateACType = ReturnType<typeof newMessageTextAreaUpdate>
-export const newMessageTextAreaUpdate = (messageText: string) => {
-    return {type: DIALOG_PAGE_ACTION_TYPE.NEW_MESSAGE_TEXT_AREA_UPDATE, newText: messageText} as const
+export const addMessage = (newMessageText: string) => {
+    return {
+        type: DIALOG_PAGE_ACTION_TYPE.ADD_MESSAGE,
+        newMessageText
+    } as const
 }
 
 export default dialogReducer;

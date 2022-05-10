@@ -12,10 +12,8 @@ import { ProfileStatusFunc } from "./ProfileStatus/ProfileStatusFunc";
 type ProfilePropsType = {
     profile: ProfileType
     posts: Array<postsType>
-    newPostText: string
     profileStatus: string
     addPost: () => void
-    newPostTextAreaUpdate: (text: string) => void
     updateStatus: (newStatus: string) => void
 
 }
@@ -32,8 +30,7 @@ const Profile = (props: ProfilePropsType) => {
                 <ProfileStatus status={props.profileStatus} updateStatus={props.updateStatus}/>
                 <Avatar avatar={props.profile.photos}/>
                 <Description profile={props.profile}/>
-                <Posts posts={props.posts} newPostText={props.newPostText} addNewPost={props.addPost}
-                       changeTextArea={props.newPostTextAreaUpdate}/>
+                <Posts posts={props.posts} addNewPost={props.addPost}/>
             </div>
         )
     }

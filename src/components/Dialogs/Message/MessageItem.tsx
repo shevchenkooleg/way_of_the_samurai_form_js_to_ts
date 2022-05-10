@@ -29,11 +29,6 @@ const MessageItem = (props: MessagePropsType) => {
 
         )
     }
-
-
-
-
-
 }
 
 export default MessageItem;

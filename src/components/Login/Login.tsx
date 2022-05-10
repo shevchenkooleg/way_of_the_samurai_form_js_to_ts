@@ -31,7 +31,6 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 type LoginPropsType = {
     makeLogIn: (email: string, password: string, rememberMe: boolean) => void
-    makeLogOut: () => void
 }
 
 const Login = (props: LoginPropsType) => {

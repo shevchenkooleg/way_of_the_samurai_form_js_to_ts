@@ -39,13 +39,11 @@ export type locationType = {
 export type profilePageType = {
     profile: ProfileType | null
     posts: Array<postsType>
-    newPostText: string
     isFetching: boolean
 }
 export type dialogsPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
-    newMessageText: string
 }
 export type sideBarType = {
     onlineStatus: Array<onlineStatusType>
