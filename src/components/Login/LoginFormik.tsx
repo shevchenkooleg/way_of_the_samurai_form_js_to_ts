@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './LoginFormik.module.css'
-import style from "../Profile/Posts/NewPost/NewPostsFormik.module.css";
+import style from "../Profile/Posts/NewPostForm/NewPostForm.module.css";
 import { useFormik } from 'formik';
 
 type LoginFormikPropsType = {

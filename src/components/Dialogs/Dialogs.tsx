@@ -3,7 +3,7 @@ import style from './Dialogs.module.css'
 import MessageItem from "./Message/MessageItem";
 import DialogItem from "./Dialog/DialogItem";
 import {dialogsType, messagesType} from "../../App";
-import TextAreaFrame from "./TextAreaFrame/TextAreaFrame";
+import NewMessageForm from "./NewMessageForm/NewMessageForm";
 
 
 
@@ -33,7 +33,7 @@ class Dialogs extends React.Component<DialogsPropsType> {
                 {messagesElements}
             </div>
             <div className={style.textAreaContainer}>
-                <TextAreaFrame addNewMessage={this.props.addMessage}/>
+                <NewMessageForm addNewMessage={this.props.addMessage}/>
             </div>
         </div>
     )

@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./Posts.module.css";
-import NewPosts from "./NewPost/NewPosts";
+import NewPosts from "./NewPostForm/NewPosts";
 import Post from "./Post/Post";
 import {postsType} from "../../../App";
-import NewPostsFormik from "./NewPost/NewPostsFormik";
+import NewPostForm from "./NewPostForm/NewPostForm";
 
 
 type ProfilePropsType = {
@@ -18,7 +18,7 @@ const Posts = (props: ProfilePropsType) => {
 
     return (
         <div className={style.posts}>
-            <NewPostsFormik addNewPost={props.addNewPost}
+            <NewPostForm addNewPost={props.addNewPost}
             />
             {postsElements}
         </div>
