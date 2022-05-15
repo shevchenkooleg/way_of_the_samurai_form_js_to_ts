@@ -1,8 +1,6 @@
 import {AppStateType, AuthDataType} from "./redux-store"
 import {authAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk/es/types";
-import {Navigate} from "react-router-dom";
-import React from "react";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
@@ -22,8 +20,7 @@ const authReducer = (state: AuthDataType = initialState, action: AuthReducerType
         case SET_AUTH_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         default:
             return state
@@ -31,8 +28,8 @@ const authReducer = (state: AuthDataType = initialState, action: AuthReducerType
 
 }
 type setAuthDataACType = ReturnType<typeof setAuthData>
-export const setAuthData = (id: string, email: string, login: string) => {
-    return {type: SET_AUTH_DATA, data: {id, email, login}} as const
+export const setAuthData = (id: string | null, email: string | null, login: string | null, isAuth: boolean) => {
+    return {type: SET_AUTH_DATA, payload: {id, email, login, isAuth}} as const
 }
 
 
@@ -45,25 +42,26 @@ export const getAuthData = (): ThunkType => {
         authAPI.me().then(response => {
             if (response.resultCode === 0) {
                 let {id, login, email} = response.data
-                dispatch(setAuthData(id, email, login));
-                // profileAPI.getProfile(id).then(response => {
-                //     console.log('about me..')
-                //     console.log(response.data)
-                // })
+                dispatch(setAuthData(id, email, login, true));
             }
         });
     }
 }
 
-export const makeLogIn = (email: string, password: string, rememberMe: boolean): ThunkType => {
+type ErrorStatusType = {
+    error: string
+}
+
+export const makeLogIn = (email: string, password: string, rememberMe: boolean, setStatus: (error: ErrorStatusType) => void): ThunkType => {
     return async (dispatch) => {
         authAPI.logIn(email, password, rememberMe)
             .then(response => {
-                console.log(response)
                 if (response.data.resultCode === 0) {
-                    window.location.reload()
+                    // window.location.reload()
+                    dispatch(getAuthData())
                 } else {
-                    console.log(response.data.messages)
+                    setStatus({error: response.data.messages[0]})
+
                 }
             })
     }
@@ -74,7 +72,9 @@ export const makeLogOut = (): ThunkType => {
         authAPI.logOut()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    window.location.reload()
+                    // window.location.reload()
+                    dispatch(setAuthData(null, null, null, false))
+
                 } else {
                     console.log(response.data.messages)
                 }

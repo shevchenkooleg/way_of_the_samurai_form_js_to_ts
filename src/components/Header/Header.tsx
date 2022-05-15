@@ -4,7 +4,7 @@ import {AuthDataType} from "../../redux/redux-store";
 import style from "./Header.module.css";
 
 type HeaderPropsType = AuthDataType & {
-    setAuthData: (id: string, email: string, login: string) => void
+    setAuthData: (id: string, email: string, login: string, isAuth: boolean) => void
     makeLogOut: () => void
 }
 

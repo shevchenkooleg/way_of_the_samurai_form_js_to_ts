@@ -1,7 +1,7 @@
 import React from "react";
 import style from './NewMessageForm.module.css'
 import {useFormik} from "formik";
-import {messageValidator} from "../../../utils/validators/validators";
+import {messageValidatorSchema} from "../../../utils/validators/validators";
 
 type TextAreaFramePropsType = {
     addNewMessage: (newMessageText:string) => void
@@ -17,7 +17,7 @@ const NewMessageForm = (props: TextAreaFramePropsType) => {
         initialValues: {
             newMessageText: ''
         },
-        validate: messageValidator,
+        validationSchema: messageValidatorSchema,
         onSubmit: (value, action) => {
             props.addNewMessage(value.newMessageText)
             action.resetForm({values: {newMessageText: ''}})

@@ -6,7 +6,7 @@ import {StateType} from "../../App";
 import { AuthDataType } from "../../redux/redux-store";
 
 type HeaderAPIContainerPropsType = AuthDataType & {
-    setAuthData: (id: string, email: string, login: string) => void
+    setAuthData: (id: string, email: string, login: string, isAuth: boolean) => void
     getAuthData: () => void
     makeLogOut: () => void
 }

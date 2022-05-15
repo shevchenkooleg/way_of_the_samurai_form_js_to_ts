@@ -1,22 +1,24 @@
-import {FormikErrors} from "formik";
-import { FormValuesType } from "../../components/Profile/Posts/NewPostForm/NewPostForm";
-import {NewMessageFormType} from "../../components/Dialogs/NewMessageForm/NewMessageForm";
+import * as Yup from 'yup';
 
 
+export const postValidatorSchema = Yup.object().shape({
+    newPostText: Yup.string()
+        .max(10, 'Too long post')
+});
 
-export const postValidator = (values: FormValuesType) => {
-    let errors: FormikErrors<FormValuesType> = {};
-    if (values.newPostText.length > 100) {
-        errors.newPostText = 'Too long message';
-    }
-    return errors;
-}
+export const messageValidatorSchema = Yup.object().shape({
+    newMessageText: Yup.string()
+
+        .max(10, 'Too long message')
+});
+
+export const LoginValidationSchema = Yup.object().shape({
+    login: Yup.string()
+        .email('Incorrect email')
+        .required('Must be filled'),
+    password: Yup.string()
+        .min(2, 'More than 2 char')
+        .required('Must be filled')
+});
 
 
-export const messageValidator = (values: NewMessageFormType) => {
-    let errors: FormikErrors<NewMessageFormType> = {};
-    if (values.newMessageText.length > 100) {
-        errors.newMessageText = 'Too long message';
-    }
-    return errors;
-}

@@ -1,7 +1,7 @@
 import {useFormik} from "formik";
 import React from "react";
 import style from "./NewPostForm.module.css";
-import {postValidator} from "../../../../utils/validators/validators";
+import {postValidatorSchema} from "../../../../utils/validators/validators";
 
 type NewPostsFormikPropsType = {
     addNewPost: (newPostText: string) => void
@@ -16,7 +16,7 @@ const NewPostForm = (props: NewPostsFormikPropsType) => {
             initialValues: {
                 newPostText: '',
             },
-            validate: postValidator,
+            validationSchema: postValidatorSchema,
             onSubmit: (values, actions) => {
                 props.addNewPost(values.newPostText)
                 actions.resetForm({values: {newPostText: ''}})
@@ -32,8 +32,11 @@ const NewPostForm = (props: NewPostsFormikPropsType) => {
                           id="newPostText"
                           name="newPostText"
                           onChange={formik.handleChange}
-                          value={formik.values.newPostText}/>
-                {formik.errors.newPostText ? <div>{formik.errors.newPostText}</div> : null}
+                          value={formik.values.newPostText}
+                          onBlur={formik.handleBlur}/>
+
+                {formik.touched.newPostText && formik.errors.newPostText ?
+                    <div>{formik.errors.newPostText}</div> : null}
                 <button type="submit" className={style.button}>Add</button>
             </div>
         </form>

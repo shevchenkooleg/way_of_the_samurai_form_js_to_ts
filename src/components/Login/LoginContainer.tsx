@@ -1,33 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import {StateType} from "../../App";
 import {compose} from "redux";
-import Login from "./Login";
 import {makeLogIn} from "../../redux/auth-reducer";
-import LoginFormik from "./LoginFormik";
+import { Login } from "./Login";
+import {StateType} from "../../App";
 
 type LoginContainerPropsType = {
-    makeLogIn: (email: string, password: string, rememberMe: boolean) => void
+    isAuth: boolean
+    makeLogIn: (email: string, password: string, rememberMe: boolean, setStatus: (error: string) => void) => void
 }
 
 class LoginContainer extends React.Component<LoginContainerPropsType> {
 
 
     render = () => {
-
         return (
         <div>
-            <LoginFormik {...this.props}/>
+            <Login {...this.props}/>
         </div>
         )
     }
 }
 
-let mapStateToProps = (state: StateType) => ({
-    // login: state.profilePage.profile,
-    // password: state.profilePage.posts,
-    // rememberMe: state.profilePage.newPostText,
-});
+const mapStateToProps = (state: StateType) => ({
+    isAuth: state.auth.isAuth
+})
 
 
 
